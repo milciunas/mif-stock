@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import NavigationBar from 'react-native-navbar';
-import { Button } from 'react-native-material-design';
 
 export default class App extends React.Component {
   render() {
