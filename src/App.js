@@ -17,7 +17,7 @@ export default class App extends React.Component {
     this.setState({ loading: true });
     const data = await this.props.fetchStocks();
     console.log('daaata', data)
-    setTimeout(() => this.setState({ loading: false, stocks: data.stocks}), 200);
+    setTimeout(() => this.setState({ loading: false, stocks: data.stocks}), 1000);
   }
 
   render() {
@@ -31,34 +31,16 @@ export default class App extends React.Component {
     console.log('this.state.stocks: ', this.state.stocks);
     return (
       <View style={styles.screen}>
-        <View style={styles.container}>
-          <Text>
-            Some text
-          </Text>
-
-          {this.state.stocks.map((stock, i) => (
-            <Text key={i}>{stock.symbol}</Text>
-          ))}
-        </View>
+        {this.state.stocks.map((stock, i) => (
+          <Text key={i}>{stock.symbol}</Text>
+        ))}
       </View>
     );
     }
 }
 
 const styles = StyleSheet.create({
-  navbaar: {
-    flex: 1,
-    paddingTop: 50,
-    paddingRight: 50,
-    paddingLeft: 50
-  },
   screen: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: 'red',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    flex: 1
+  }
 });
