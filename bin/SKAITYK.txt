@@ -1,0 +1,15 @@
+Autorius: Tautvydas Milèiûnas VU MIF IT 3 kurso, 2 grupë
+
+Vartotojo sàsaja: https://github.com/Friggid/mif-stock
+Posistëmë: https://github.com/Friggid/mif-stock-backend
+
+Paleidimo instrukcija: 
+
+!! SVARBU !!
+Ðiuo metu pakavimo sistema neteisingai supakuoja Android paleidimo failiukà, todël jo ásiraðyti nepavyksta.
+
+1) Prijunkite USB jungtimi Android árenginá prie kompiuterio.
+2) Nueikite á \bin aplankà ir ákelkite .apk failà á Android árenginá.
+3) Android árenginyje áraðykite .apk failà.
+4) Paleiskite programëlæ.
+5) Programëlë kolkas gali neásiraðyti dël labai ankstyvios bûklës ir nestabilaus supakavimo.

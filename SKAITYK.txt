@@ -1,0 +1,11 @@
+Autorius: Tautvydas Milèiûnas VU MIF IT 3 kurso, 2 grupë
+Projektas: Mobilioji akcijø kainø stebëjimo sistema
+
+Vartotojo sàsaja: https://github.com/Friggid/mif-stock
+Posistëmë: https://github.com/Friggid/mif-stock-backend
+
+1. "doc/Darbu planas/" kataloge yra apraðytas darbø planas Latex ir pdf formatais.
+2. "doc/Latex/" kataloge yra pradëtas raðyti kursinis darbas remiantis VU latex ðablonu.
+3. "bin/" supakuotas ./src/ turinys á .apk failà, kuris naudojamas diegimui Android árenginiuose.
+4. "src/" kataloge yra saugomas vartotojo sàsajos iðeities kodas.
+5. "mif-stock-backend" kataloge yra saugojamas posistemës iðeities kodas. 
