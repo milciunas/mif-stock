@@ -1,0 +1,74 @@
+% Kompiuterijos katedros šablonas
+% Template of Department of Computer Science II
+% Versija 1.0 2015 m. kovas [ March, 2015]
+
+\documentclass[a4paper,12pt,fleqn]{article}
+\input{allPacks}
+
+\newtoggle{inLithuanian}
+%If the report is in Lithuanian, it is set to true; otherwise, change to false
+\settoggle{inLithuanian}{true}
+
+%create file preface.tex for the preface text
+%if preface is needed set to true
+\newtoggle{needPreface}
+\settoggle{needPreface}{false}
+
+\newtoggle{signaturesOnTitlePage}
+\settoggle{signaturesOnTitlePage}{true}
+
+
+\input{macros}
+
+\begin{document}
+	% #1 -report type, #2 - title, #3-7 students, #8 - supervisor
+	\depttitlepage{Mobilioji akcijų kainų stebėjimo sistema}{Darbų planas}
+	{3 kurso, IT2 grupės studentas, \\ Tautvydas Milčiūnas} 
+	{}{}{}{}% students 2-5
+	{dr. Joana Katina}
+	
+ %the main part
+ \newpage
+ \section{Planuojamos naudoti technologijos}
+	 \subitem{1. React Native(vartotojo sąsaja Android įrenginiams).}
+	 \subitem{2. Mongoose(duomenų bazė).}
+	 \subitem{4. ExpoXDE(programinio kodo pakavimo, paleidimo ir išleidimo biblioteka).}
+	 \subitem{5. NodeJS.(programinio kodo pakavimo biblioteka)}
+	 \subitem{6. React Native Material Design(dizaino sprendimams).}
+	 \subitem{7. GitHub(programinio kodo versijavimo sistema).}
+	 \subitem{8. NPM(paketų instaliavimo ir palaikymo biblioteka).}
+	 \subitem{9. Choco(paketų instaliavimo ir palaikymo biblioteka)}
+	 
+ \section{Darbų planas}
+ \label{sec:motivation}
+ \subsection{Planavimas}
+ \label{sec:example}
+ \subsubsection{Numatoma data: 03/01 - 03/20}
+	 \subsubitem{1. Susitikimas su vadove Joana Katina darbo aptarimui.}
+	 \subsubitem{2. Susitikimo metu aptartų technologijų tyrinėjimas.}
+	 \subsubitem{3. Pasirinktų technologijų konfigūracija ir testavimas.}
+	 \subsubitem{4. Projekto inicializavimas ir surišimas su versijavimo sistema GitHub.}
+	 \subsubitem{5. LaTeX kursinio darbo pradiniai aprašymai.} 
+ \subsection{Pirmasis darbų etapas}
+ \subsubsection{Numatoma data: 03/20 - 04/03}
+	 \subsubitem{1. Panašių sistemų analizė}
+	 \subsubitem{2. Duomenų bazės projektavimas}
+	 \subsubitem{3. Posistemės kūrimas}
+	 \subsubitem{4. Posistemės testų rašymas ir fizinis testavimas}
+	 \subsubitem{5. LaTeX kursinio darbo pildymas}
+ \subsection{Antrasis darbų etapas}
+ \subsubsection{Numatoma data: 04/03 - 04/20}
+	 \subsubitem{1. Vartotojo sąsajos projektavimas}
+	 \subsubitem{2. Vartotojo surišimas su posisteme}
+	 \subsubitem{3. Vartotojo sąsajos programavimas}
+	 \subsubitem{4. Vartotojo sąsajos testų rašymas ir fizinis testavimas}
+	 \subsubitem{5. LaTeX kursinio darbo pildymas.}
+ \newpage
+ \subsection{Trečiasis darbų etapas}
+ \subsubsection{Numatoma data: 04/20 - 06/20}
+	 \subsubitem{1. Posistemės darbai.}
+	 \subsubitem{2. Vartotojo sąsajos darbai.}
+	 \subsubitem{3. Sistemos išleidimo darbai.}
+	 \subsubitem{4. UML diagramų kūrimas.}
+	 \subsubitem{5. LaTeX kursinio darbo baigimas.}
+\end{document}

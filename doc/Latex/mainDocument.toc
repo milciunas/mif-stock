@@ -1,0 +1,14 @@
+\select@language {lithuanian}
+\contentsline {section}{\nameref {sec:keywords}}{3}{section*.1}
+\contentsline {section}{Santrauka}{4}{section*.2}
+\contentsline {section}{Summary}{5}{section*.3}
+\contentsline {section}{\nameref {sec:intro}}{6}{section*.4}
+\contentsline {section}{\numberline {1}Pirmasis skyrius}{7}{section.1}
+\contentsline {subsection}{\numberline {1.1}Pirmojo skyriaus poskyris}{7}{subsection.1.1}
+\contentsline {subsubsection}{\numberline {1.1.1}Pirmojo skyriaus pirmo poskyrio poskyris}{7}{subsubsection.1.1.1}
+\contentsline {section}{\nameref {sec:conclu}}{8}{section*.6}
+\contentsline {section}{\nameref {sec:future}}{9}{section*.7}
+\contentsline {section}{Literat\IeC {\=u}ros \IeC {\v s}altiniai}{10}{section*.8}
+\contentsline {section}{Priedai}{11}{section*.10}
+\contentsline {section}{\numberline {A}Pirmojo priedo pavadinimas}{12}{Priedas.1.A}
+\contentsline {section}{\numberline {B}Antrojo priedo pavadinimas}{13}{Priedas.1.B}
