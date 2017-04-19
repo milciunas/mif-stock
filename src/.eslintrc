@@ -1,3 +1,7 @@
 {
-  "extends": "equimper"
+  "extends": "equimper",
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "react/jsx-closing-bracket-location": [0]
+  }
 }

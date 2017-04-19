@@ -1,17 +1,27 @@
 import React from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
-import { fetchYahooFinance } from '../../../constants/api';
-import styles from '../styles/homeScreen';
+import { FontAwesome } from 'react-navigation';
+import { Text, View, ScrollView } from 'react-native';
+import { fetchYahooFinance } from '../../../constants/Api';
+import { LoadingScreen } from '../../common';
+import styles from '../styles/HomeScreen';
 
 class HomeScreenPure extends React.Component {
   static defaultProps = {
-    fetchYahooFinance,
+    fetchYahooFinance
+  }
+
+  static navigationOptions = {
+    tabBar: {
+      icon: () => (
+        <FontAwesome name="home" size={25} />
+      )
+    }
   }
 
   state = {
     loading: false,
     stocks: [],
-    yahooData: [],
+    yahooData: []
   }
 
   async componentDidMount() {
@@ -25,11 +35,10 @@ class HomeScreenPure extends React.Component {
     const yahooStocks = this.state.yahooData.length < 2
       ? this.state.yahooData
       : [this.state.yahooData];
-    return yahooStocks.map(function (stocks, i) {
-      stocks.forEach(function (element) {
+    return yahooStocks.map((stocks) => {
+      stocks.forEach((element) => {
         temp.push({ symbol: element.symbol, ask: element.Ask });
       }, this);
-      console.log('teeeeeemp', temp);
       return temp;
     });
   }
@@ -37,14 +46,53 @@ class HomeScreenPure extends React.Component {
   render() {
     if (this.state.loading) {
       return (
-        <View style={styles.root}>
-          <ActivityIndicator size={'large'} />
-        </View>
+        <LoadingScreen />
       );
     }
+
+    //Using demo data to style frontend, because real api fetching is not finished yet
     return (
       <View style={styles.root}>
-        <Text>{'Home screen'}</Text>
+        <View style={styles.topContainer}>
+          <Text style={{ fontSize: 26, textAlign: 'center', fontFamily: 'sansBoldItalic' }}>
+            {'mobile stocks observation system'}
+          </Text>
+        </View>
+        <View style={styles.bottomContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={{ fontSize: 26, fontFamily: 'sansBold' }}>
+              {'Stocks'}
+            </Text>
+          </View>
+          <ScrollView
+            showsVerticalScrollIndicator={false}>
+            <View style={styles.rowContainer}>
+              <Text style={styles.customFont}>{'Apple: 1.523%'}</Text>
+              <View style={styles.separator} />
+              <Text style={styles.customFont}>{'Google: 1.52223%'}</Text>
+              <View style={styles.separator} />
+              <Text style={styles.customFont}>{'Samsung: 2.523%'}</Text>
+              <View style={styles.separator} />
+              <Text style={styles.customFont}>{'Google: 111.52223%'}</Text>
+              <View style={styles.separator} />
+              <Text style={styles.customFont}>{'Huawei: 154.52223%'}</Text>
+              <View style={styles.separator} />
+              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
+              <View style={styles.separator} />
+              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
+              <View style={styles.separator} />
+              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
+              <View style={styles.separator} />
+              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
+              <View style={styles.separator} />
+              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
+              <View style={styles.separator} />
+              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
+              <View style={styles.separator} />
+              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
+            </View>
+          </ScrollView>
+        </View>
       </View>
     );
   }
