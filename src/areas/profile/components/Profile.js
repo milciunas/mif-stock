@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { FontAwesome } from 'react-navigation';
+import { FontAwesome } from '@expo/vector-icons';
 import { View, Text } from 'react-native';
 
 class ProfileScreen extends Component {
   static navigationOptions = {
-    tabBar: {
-      icon: ({ tintColor }) => (
-        <FontAwesome name="home" size={25} color={tintColor} />
-      )
-    }
+    tabBarLabel: 'Profile',
+    tabBarIcon: (color) => (
+      <FontAwesome name="user" size={20} tintColor={color} />
+    )
   }
 
   render() {

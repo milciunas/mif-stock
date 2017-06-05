@@ -1,21 +1,20 @@
-import React from 'react';
-import { FontAwesome } from 'react-navigation';
+import React, { Component } from 'react';
+import { FontAwesome } from '@expo/vector-icons';
 import { Text, View, ScrollView } from 'react-native';
 import { fetchYahooFinance } from '../../../constants/Api';
 import { LoadingScreen } from '../../common';
 import styles from '../styles/HomeScreen';
 
-class HomeScreenPure extends React.Component {
+export default class HomeScreenPure extends Component {
   static defaultProps = {
     fetchYahooFinance
   }
 
   static navigationOptions = {
-    tabBar: {
-      icon: () => (
-        <FontAwesome name="home" size={25} />
-      )
-    }
+    tabBarLabel: 'Home',
+    tabBarIcon: () => (
+      <FontAwesome name="home" size={20} />
+    )
   }
 
   state = {
@@ -49,8 +48,8 @@ class HomeScreenPure extends React.Component {
         <LoadingScreen />
       );
     }
-
-    //Using demo data to style frontend, because real api fetching is not finished yet
+    console.log(this.MapStocks());
+    // Using demo data to style frontend, because real api fetching is not finished yet
     return (
       <View style={styles.root}>
         <View style={styles.topContainer}>
@@ -97,6 +96,4 @@ class HomeScreenPure extends React.Component {
     );
   }
 }
-
-export const HomeScreen = HomeScreenPure;
 

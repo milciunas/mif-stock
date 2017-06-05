@@ -18,14 +18,16 @@ export default TabNavigator({
     animationEnable: true,
     tabBarPosition: 'bottom',
     tabBarOptions: {
-      // showLabel: false
+      showLabel: false,
+      showIcon: true,
       inactiveTintColor: Colors.blackColor,
       activeTintColor: Colors.platinumColor,
       indicatorStyle: {
         backgroundColor: Colors.platinumColor
       },
       style: {
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        height: 40
       }
     }
   }
