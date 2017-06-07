@@ -1,6 +1,6 @@
 import { TabNavigator } from 'react-navigation';
-import { HomeScreen, ProfileScreen, GameScreen } from '../../areas';
-import Colors from '../../constants/Colors';
+import { HomeScreen, ProfileScreen, GameScreen } from '../areas';
+import Colors from '../constants/Colors';
 
 export default TabNavigator({
   Home: {

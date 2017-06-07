@@ -3,18 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "eslint": "^3.19.0",
     "eslint-config-equimper": "^1.5.1",
     "jest-expo": "1.0.1",
+    "prop-types": "^15.5.10",
     "react-native-scripts": "0.0.20",
-    "react-test-renderer": "~15.4.0"
+    "react-test-renderer": "~15.4.0",
+    "redux-logger": "^3.0.6",
+    "styled-components": "^2.0.0"
   },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "main": "App.js",
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "lint": "eslint src App.js",
+    "lint:fix": "eslint --fix src App.js"
   },
   "jest": {
     "preset": "jest-expo"
@@ -23,9 +29,12 @@
     "@expo/vector-icons": "^5.0.0",
     "axios": "^0.15.3",
     "expo": "^17.0.0",
+    "native-base": "^2.1.4",
     "react": "16.0.0-alpha.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz",
     "react-native-extended-stylesheet": "^0.4.0",
-    "react-navigation": "^1.0.0-beta.7"
+    "react-native-material-ui": "^1.12.0",
+    "react-navigation": "^1.0.0-beta.11",
+    "redux-promise-middleware": "^4.3.0"
   }
 }
