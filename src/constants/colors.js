@@ -3,6 +3,6 @@ export default {
   whiteColor: '#fff',
   platinumColor: '#1B9AAA',
   alabasterColor: '#F5F1E3',
-  signBtnBackground: '#10636d',
-  signupBtnBackground: '#1B9AAA'
+  googleBtnBackground: '#db3236',
+  fbBtnBackground: '#3b5998'
 };

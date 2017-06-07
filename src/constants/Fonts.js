@@ -15,13 +15,14 @@ export default {
     backgroundColor: 'transparent'
   },
   authWelcomeText: {
-    fontSize: 16,
+    fontSize: 18,
     color: Colors.blackColor,
     backgroundColor: 'transparent',
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: 20
   },
   buttonAuth: {
-    fontSize: 16,
+    fontSize: 14,
     color: Colors.whiteColor,
     fontFamily: 'sansBold'
   }

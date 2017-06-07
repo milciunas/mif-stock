@@ -37,3 +37,7 @@ export default class App extends React.Component {
 }
 
 Expo.registerRootComponent(App);
+
+// IGNORE WARNING BOX
+/* eslint-disable no-console */
+console.ignoredYellowBox = ['Warning: View.propTypes'];
