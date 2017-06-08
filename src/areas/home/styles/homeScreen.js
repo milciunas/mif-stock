@@ -4,7 +4,7 @@ const styles = EStyleSheet.create({
   root: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '$platinumColor'
+    backgroundColor: '$whiteColor'
   },
   topContainer: {
     flex: 0.1,
@@ -13,6 +13,7 @@ const styles = EStyleSheet.create({
   },
   bottomContainer: {
     flex: 1,
+    paddingTop: 10,
     justifyContent: 'center',
     backgroundColor: '$alabasterColor'
   },
@@ -26,16 +27,33 @@ const styles = EStyleSheet.create({
   },
   separator: {
     height: 1,
-    opacity: 0.1,
     backgroundColor: '$blackColor',
-    marginTop: 15,
-    marginBottom: 15,
-    width: 1000
+    marginTop: 10,
+    marginBottom: 10,
+    width: '100%',
+    opacity: 0.1
+  },
+  titleSep: {
+    height: 1,
+    backgroundColor: '$platinumColor',
+    marginTop: 10,
+    marginBottom: 10,
+    width: '80%',
+    alignSelf: 'center',
+    flexDirection: 'row',
+    opacity: 0.1
   },
   titleContainer: {
+    flex: 0.2,
+    alignItems: 'center'
+  },
+  stocksContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 30,
-    paddingTop: 20
+    justifyContent: 'space-between',
+    paddingTop: 5,
+    paddingLeft: 10,
+    paddingRight: 10
   }
 });
 

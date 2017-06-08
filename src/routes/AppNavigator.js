@@ -13,14 +13,14 @@ import Navigator from './Navigator';
 )
 
 export default class AppNavigator extends Component {
-  state = { }
+  state = {}
   render() {
     const navigation = addNavigationHelpers({
       dispatch: this.props.dispatch,
-      state: this.props.state
+      state: this.props.navigation
     });
 
-    if (this.props.user.logged) {
+    if (this.props.user.isLogged) {
       return <Navigator navigation={navigation} />;
     }
 

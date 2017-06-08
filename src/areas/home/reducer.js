@@ -20,7 +20,7 @@ export default (state = INITIAL_STATE, action) => {
     case `${FETCH_YAHOO_FINANCE}_FULFILLED`:
       return {
         finance: {
-          data: action.payload,
+          data: action.payload.query.results.quote,
           isFetched: true,
           error: {
             on: false,

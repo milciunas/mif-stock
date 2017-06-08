@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import { FontAwesome } from '@expo/vector-icons';
-import { Text, View, ScrollView } from 'react-native';
-// import { fetchYahooFinance } from '../../../constants/Api';
-
-import { Button, Icon } from 'native-base';
+import { Text, View, ListView } from 'react-native';
 
 import { connect } from 'react-redux';
 import { fetchYahooFinance } from '../actions';
 
 import { LoadingScreen } from '../../common';
-import Colors from '../../../constants/Colors';
 import styles from '../styles/HomeScreen';
+import Colors from '../../../constants/Colors';
 
 @connect(
   state => ({
@@ -18,71 +14,54 @@ import styles from '../styles/HomeScreen';
   }),
   { fetchYahooFinance })
 export default class HomeScreenPure extends Component {
-  // static defaultProps = {
-  //   fetchYahooFinance
-  // }
-  // state = {
-  //   loading: false,
-  //   stocks: [],
-  //   yahooData: []
-  // }
-
-  // async componentDidMount() {
-  //   this.setState({ loading: true });
-  //   const data = await this.props.fetchYahooFinance();
-  //   this.setState({ loading: false, yahooData: data.query.results.quote });
-  // }
-
-  // MapStocks() {
-  //   const temp = [];
-  //   const yahooStocks = this.state.yahooData.length < 2
-  //     ? this.state.yahooData
-  //     : [this.state.yahooData];
-  //   return yahooStocks.map((stocks) => {
-  //     stocks.forEach((element) => {
-  //       temp.push({ symbol: element.symbol, ask: element.Ask });
-  //     }, this);
-  //     return temp;
-  //   });
-  // }
-
-
-  static navigationOptions = {
-    headerRight: (
-      <View style={{ paddingTop: 20 }}>
-        <Button transparent>
-          <Icon
-            name="search"
-            style={{
-              fontSize: 30,
-              color: Colors.platinumColor
-            }}
-          />
-        </Button>
-      </View>
-    ),
-    tabBarLabel: 'home',
-    tabBarIcon: () => (
-      <FontAwesome name="home" size={20} />
-    )
+  constructor(props) {
+    super(props);
+    this.dataSource = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 });
   }
 
   componentDidMount() {
     this.props.fetchYahooFinance();
   }
 
+  MapStocks(data) {
+    const stocks = data.map((item) => ({
+      symbol: item.symbol,
+      bid: item.Bid,
+      ask: item.Ask,
+      change: item.ChangeinPercent,
+      currency: item.Currency,
+      name: item.Name
+    }));
+
+    console.log('NOT DESTRUCTED: ', data);
+
+    return stocks;
+  }
+
+  _renderRow(rowData) {
+    return (
+      <View style={{ flexDirection: 'column' }}>
+        <Text style={{ alignSelf: 'center', flexDirection: 'row', fontSize: 16, fontFamily: 'sansBold', color: Colors.platinumColor }}>
+          {`${rowData.name}`}{` (${rowData.symbol})`}
+        </Text>
+        <View style={styles.titleSep} />
+        <View style={styles.stocksContainer}>
+          <Text style={{ color: 'green' }}>{`BID: ${rowData.bid} `} </Text>
+          <Text style={{ color: 'red' }}>{`ASK: ${rowData.ask} `} </Text>
+        </View>
+        <View style={styles.separator} />
+      </View>
+    );
+  }
+
   render() {
     const {
       finance: {
         isFetched,
-        // data,
+        data,
         error
       }
     } = this.props;
-
-    console.log(this.props.finance);
-
-
 
     if (!isFetched) {
       return (
@@ -95,48 +74,24 @@ export default class HomeScreenPure extends Component {
         </View>
       );
     }
-    // Using demo data to style frontend, because real api fetching is not finished yet
+    const destructed = this.MapStocks(data);
+
     return (
       <View style={styles.root}>
         <View style={styles.topContainer}>
           <Text style={{ fontSize: 16, textAlign: 'center', fontFamily: 'sansBoldItalic' }}>
-            {'mobile stocks observation system'}
+            {'Mobile stocks observation system'}
           </Text>
         </View>
         <View style={styles.bottomContainer}>
-          <View style={styles.titleContainer}>
-            <Text style={{ fontSize: 26, fontFamily: 'sansBold' }}>
-              {'Stocks'}
-            </Text>
-          </View>
-          <ScrollView
-            showsVerticalScrollIndicator={false}>
-            <View style={styles.rowContainer}>
-              <Text style={styles.customFont}>{'Apple: 1.523%'}</Text>
-              <View style={styles.separator} />
-              <Text style={styles.customFont}>{'Google: 1.52223%'}</Text>
-              <View style={styles.separator} />
-              <Text style={styles.customFont}>{'Samsung: 2.523%'}</Text>
-              <View style={styles.separator} />
-              <Text style={styles.customFont}>{'Google: 111.52223%'}</Text>
-              <View style={styles.separator} />
-              <Text style={styles.customFont}>{'Huawei: 154.52223%'}</Text>
-              <View style={styles.separator} />
-              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
-              <View style={styles.separator} />
-              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
-              <View style={styles.separator} />
-              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
-              <View style={styles.separator} />
-              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
-              <View style={styles.separator} />
-              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
-              <View style={styles.separator} />
-              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
-              <View style={styles.separator} />
-              <Text style={styles.customFont}>{'Bose: 13.5223%'}</Text>
-            </View>
-          </ScrollView>
+          {
+            isFetched
+            ? <ListView
+              dataSource={this.dataSource.cloneWithRows(destructed)}
+              renderRow={(rowData) => this._renderRow(rowData)} />
+            : null
+          }
+
         </View>
       </View>
     );
