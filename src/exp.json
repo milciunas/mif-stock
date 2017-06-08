@@ -1,15 +1,15 @@
 {
-  "expo": {
-    "sdkVersion": "17.0.0",
-    "name": "Mif Stock",
-    "icon": "http://www.freeiconspng.com/uploads/stock-exchange-icon-png-1.png",
-    "version": "1.0.0",
-    "slug": "mifstock",
-    "ios": {
-      "bundleIdentifier": "com.mifstock.mifstock"
-    },
-    "android": {
-      "package": "com.mifstock.mifstock"
-    }
-  }
+  "sdkVersion": "17.0.0",
+  "name": "Mif Stock",
+  "icon": "http://www.freeiconspng.com/uploads/stock-exchange-icon-png-1.png",
+  "version": "1.0.0",
+  "slug": "mif-stock",
+  "ios": {
+    "bundleIdentifier": "com.mifstock.mifstock"
+  },
+  "android": {
+    "package": "com.mifstock.mifstock"
+  },
+  "orientation": "portrait",
+  "entryPoint": "./App"
 }
