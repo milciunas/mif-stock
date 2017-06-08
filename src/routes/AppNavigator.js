@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import { LoginScreen } from '../areas';
+// import { LoginScreen } from '../areas';
 import Navigator from './Navigator';
 
 @connect(
@@ -20,11 +20,14 @@ export default class AppNavigator extends Component {
       state: this.props.navigation
     });
 
-    if (this.props.user.isLogged) {
-      return <Navigator navigation={navigation} />;
-    }
+    return <Navigator navigation={navigation} />;
 
-    return <LoginScreen />;
+    // LOGINAS ISJUNGTAS TESTAVIMUI!
+    // if (this.props.user.isLogged) {
+    //   return <Navigator navigation={navigation} />;
+    // }
+
+    // return <LoginScreen />;
   }
 }
 

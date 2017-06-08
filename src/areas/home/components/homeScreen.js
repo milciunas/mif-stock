@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, ListView } from 'react-native';
+import { Text, View, ListView, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 
 import { connect } from 'react-redux';
 import { fetchYahooFinance } from '../actions';
@@ -32,7 +33,8 @@ export default class HomeScreenPure extends Component {
       change: item.Change,
       currency: item.Currency,
       name: item.Name,
-      lastPrice: item.LastTradePriceOnly
+      lastPrice: item.LastTradePriceOnly,
+      lastTradeTime: item.LastTradeTime
     }));
 
     console.log('NOT DESTRUCTED: ', data);
@@ -43,15 +45,26 @@ export default class HomeScreenPure extends Component {
   _renderRow(rowData) {
     return (
       <View style={{ flexDirection: 'column' }}>
-        <Text style={{ alignSelf: 'center', flexDirection: 'row', fontSize: 16, fontFamily: 'sansBold', color: Colors.platinumColor }}>
-          {`${rowData.name}`}{` (${rowData.symbol})`}
-        </Text>
-        <View style={styles.titleSep} />
-        <View style={styles.stocksContainer}>
-          <Text style={{ color: 'black' }}>{`BID: ${rowData.lastPrice} `} </Text>
-          <Text style={{ color: 'green' }}>{`${rowData.change}`}</Text>
-          <Text style={{ color: 'green' }}>{`${rowData.changeInPercent}`}</Text>
-        </View>
+        <TouchableOpacity>
+          <View style={styles.stocksContainer}>
+              <View style={{ flex: 0.7 }}>
+                <View style={{ flexDirection: 'column' }}>
+                  <Text style={{ color: 'black' }}>{`${rowData.name}`}</Text>
+                  <View style={{ flexDirection: 'row' }}>
+                    <FontAwesome
+                      name="clock-o"
+                      size={16}
+                      color="green" />
+                    <Text>{` ${rowData.lastTradeTime}`}</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={{ flex: 0.3 }}>
+                <Text>{`Price: ${rowData.lastPrice}`}</Text>
+                <Text style={{ color: 'green' }}>{`${rowData.change}`}{`(${rowData.changeInPercent})`}</Text>
+              </View>
+          </View>
+        </TouchableOpacity>
         <View style={styles.separator} />
       </View>
     );
@@ -88,13 +101,11 @@ export default class HomeScreenPure extends Component {
         </View>
         <View style={styles.bottomContainer}>
           {
-            isFetched
-            ? <ListView
-              dataSource={this.dataSource.cloneWithRows(destructed)}
-              renderRow={(rowData) => this._renderRow(rowData)} />
-            : null
+            !isFetched ? null :
+              <ListView
+                dataSource={this.dataSource.cloneWithRows(destructed)}
+                renderRow={(rowData) => this._renderRow(rowData)} />
           }
-
         </View>
       </View>
     );

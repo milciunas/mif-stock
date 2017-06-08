@@ -14,20 +14,21 @@ export default TabNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: () => ({
+      header: null,
       headerStyle: NavbarDefaultStyle,
-      headerRight: (
-        <View style={{ paddingTop: 20 }}>
-          <Button transparent>
-            <Icon
-              name="search"
-              style={{
-                fontSize: 30,
-                color: Colors.whiteColor
-              }}
-            />
-          </Button>
-        </View>
-      ),
+      // headerRight: (
+      //   <View style={{ paddingTop: 20 }}>
+      //     <Button transparent>
+      //       <Icon
+      //         name="search"
+      //         style={{
+      //           fontSize: 30,
+      //           color: Colors.whiteColor
+      //         }}
+      //       />
+      //     </Button>
+      //   </View>
+      // ),
       tabBarIcon: ({ tintColor }) => (
         <FontAwesome
           name="home"
@@ -39,6 +40,7 @@ export default TabNavigator({
   Game: {
     screen: GameScreen,
     navigationOptions: {
+      header: null,
       headerStyle: NavbarDefaultStyle,
       tabBarIcon: ({ tintColor }) => (
         <FontAwesome
@@ -51,6 +53,7 @@ export default TabNavigator({
   ProfileScreen: {
     screen: ProfileScreen,
     navigationOptions: {
+      header: null,
       headerStyle: NavbarDefaultStyle,
       tabBarIcon: ({ tintColor }) => (
         <FontAwesome
@@ -62,6 +65,7 @@ export default TabNavigator({
   }
 },
   {
+    headerMode: 'screen',
     swipeEnabled: true,
     animationEnable: true,
     tabBarPosition: 'bottom',
@@ -75,7 +79,7 @@ export default TabNavigator({
       },
       style: {
         backgroundColor: '#fff',
-        height: 40
+        height: 50
       }
     }
   }
