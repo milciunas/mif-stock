@@ -1,5 +1,6 @@
 import Expo, { AppLoading } from 'expo';
 import React from 'react';
+import Moment from 'moment';
 import { AsyncStorage, UIManager } from 'react-native';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
@@ -44,6 +45,7 @@ class App extends React.Component {
   }
 
   render() {
+    Moment.locale('LT');
     if (!this.state.fontLoaded || !this.state.ready) {
       return <AppLoading />;
     }

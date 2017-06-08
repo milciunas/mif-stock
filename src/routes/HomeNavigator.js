@@ -5,6 +5,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
 import { HomeScreen, ProfileScreen, GameScreen } from '../areas';
 import Colors from '../constants/Colors';
+import styled from 'styled-components/native';
 
 const NavbarDefaultStyle = {
   backgroundColor: Colors.platinumColor
@@ -32,8 +33,9 @@ export default TabNavigator({
       tabBarIcon: ({ tintColor }) => (
         <FontAwesome
           name="home"
-          size={20}
-          color={tintColor} />
+          size={16}
+          color={tintColor}
+          style={{ marginBottom: 10 }} />
       )
     })
   },
@@ -44,9 +46,10 @@ export default TabNavigator({
       headerStyle: NavbarDefaultStyle,
       tabBarIcon: ({ tintColor }) => (
         <FontAwesome
-          name="money"
-          size={20}
-          color={tintColor} />
+          name="suitcase"
+          size={16}
+          color={tintColor}
+          style={{ marginBottom: 10 }} />
       )
     }
   },
@@ -57,9 +60,10 @@ export default TabNavigator({
       headerStyle: NavbarDefaultStyle,
       tabBarIcon: ({ tintColor }) => (
         <FontAwesome
-          name="user"
-          size={20}
-          color={tintColor} />
+          name="address-card-o"
+          size={16}
+          color={tintColor}
+          style={{ marginBottom: 10 }} />
       )
     }
   }
@@ -79,7 +83,7 @@ export default TabNavigator({
       },
       style: {
         backgroundColor: '#fff',
-        height: 50
+        height: 35
       }
     }
   }
