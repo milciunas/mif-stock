@@ -28,9 +28,11 @@ export default class HomeScreenPure extends Component {
       symbol: item.symbol,
       bid: item.Bid,
       ask: item.Ask,
-      change: item.ChangeinPercent,
+      changeInPercent: item.ChangeinPercent,
+      change: item.Change,
       currency: item.Currency,
-      name: item.Name
+      name: item.Name,
+      lastPrice: item.LastTradePriceOnly
     }));
 
     console.log('NOT DESTRUCTED: ', data);
@@ -46,8 +48,9 @@ export default class HomeScreenPure extends Component {
         </Text>
         <View style={styles.titleSep} />
         <View style={styles.stocksContainer}>
-          <Text style={{ color: 'green' }}>{`BID: ${rowData.bid} `} </Text>
-          <Text style={{ color: 'red' }}>{`ASK: ${rowData.ask} `} </Text>
+          <Text style={{ color: 'black' }}>{`BID: ${rowData.lastPrice} `} </Text>
+          <Text style={{ color: 'green' }}>{`${rowData.change}`}</Text>
+          <Text style={{ color: 'green' }}>{`${rowData.changeInPercent}`}</Text>
         </View>
         <View style={styles.separator} />
       </View>
