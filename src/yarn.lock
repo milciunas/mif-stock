@@ -4887,6 +4887,10 @@ react-native-extended-stylesheet@^0.5.0:
   dependencies:
     eventemitter3 "^2.0.2"
 
+react-native-highcharts@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-highcharts/-/react-native-highcharts-1.0.1.tgz#1a297150200fd40ef73dbcfc817aec18b9afe98a"
+
 react-native-keyboard-aware-scroll-view@0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.2.7.tgz#dd344cec25284b6314f1cc9d1b75ba267483c6b6"

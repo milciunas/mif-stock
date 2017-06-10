@@ -1,7 +1,7 @@
 import Expo, { AppLoading } from 'expo';
 import React from 'react';
 import Moment from 'moment';
-import { AsyncStorage, UIManager } from 'react-native';
+import { AsyncStorage, UIManager, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -36,6 +36,7 @@ class App extends React.Component {
       },
       () => this.setState({ ready: true })
     );
+    StatusBar.setHidden(true);
   }
 
   async _loadAssetsAsync() {

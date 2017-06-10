@@ -27,15 +27,12 @@ function _symWrap(symbol) {
 
 const baseUrl = 'https://query.yahooapis.com/v1/public/yql?';
 const searchString = 'q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20';
-const searchString2 = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22YHOO%22%20and%20startDate%20%3D%20%222009-09-11%22%20and%20endDate%20%3D%20%222010-03-10%22&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
 
 const companies = [
   _symWrap('YHOO'),
   _symWrap('AAPL'),
   _symWrap('MSFT'),
-  _symWrap('CSCO'),
-  _symWrap('NOK'),
-  _symWrap('GOOG'),
+  _symWrap('GOOGL'),
   _symWrap('BCS'),
   _symWrap('ORCL'),
   _symWrap('EBAY'),
@@ -45,7 +42,9 @@ const companies = [
   _symWrap('NVDA'),
   _symWrap('DRWI'),
   _symWrap('USO'),
-  _symWrap('BAC')
+  _symWrap('BAC'),
+  _symWrap('CSCO'),
+  _symWrap('NOK')
 ];
 
 function _mapCompanies(data) {
@@ -55,15 +54,8 @@ function _mapCompanies(data) {
 }
 
 const mappedCompanies = (_mapCompanies, companies);
-const format = '&format=json';
-const env = '&env=store';
-const where = '%3A%2F%2Fdatatables.org%2FFalltableswithkeys&callback=';
 
 const financeUrl = `${baseUrl}${searchString}(${mappedCompanies})&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`;
-
-console.log('FINANCE URL: ', financeUrl);
-
-// 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22YHOO%22,%22AAPL%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback='
 
 export const fetchYahooFinance = () =>
   fetch(financeUrl)
@@ -87,5 +79,23 @@ class UserApi {
     }
   }
 }
+
+const historicalTicker = [
+  'YHOO'
+];
+const hStartDate = '2017-05-01';
+const hEndDate = '2017-06-01';
+
+function _getHistoricalData(ticker, startDate, endDate) {
+  return `https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?api_key=3FgcfULPHqr-9KT-Ke-a&ticker=${ticker}&date.gte=${startDate}&date.lte=${endDate}`;
+}
+
+export const fetchHictoricalData = (ticker, startDate, endDate) =>
+  fetch(_getHistoricalData(ticker, startDate, endDate))
+    .then(res => res.json())
+    .catch((error) => {
+      console.log(`Problem while fetching historical url: ${error.message}`);
+      throw error;
+    });
 
 export const User = new UserApi();

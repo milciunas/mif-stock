@@ -7,6 +7,7 @@ import { fetchYahooFinance } from '../actions';
 
 import { LoadingScreen } from '../../common';
 import styles from '../styles/HomeScreen';
+import Colors from '../../../constants/Colors';
 
 @connect(
   state => ({
@@ -73,7 +74,12 @@ export default class HomeScreenPure extends Component {
               </View>
               <View style={{ flex: 0.3 }}>
                 <Text>{`Price: ${rowData.lastPrice}`}</Text>
-                <Text style={{ color: 'green' }}>{`${rowData.change}`}{`(${rowData.changeInPercent})`}</Text>
+                {
+                  rowData.change.includes('-') ?
+                    <Text style={{ color: 'red' }}>{`${rowData.change}`}{`(${rowData.changeInPercent})`}</Text>
+                  :
+                    <Text style={{ color: 'green' }}>{`${rowData.change}`}{`(${rowData.changeInPercent})`}</Text>
+                }
               </View>
           </View>
         </TouchableOpacity>
@@ -116,7 +122,7 @@ export default class HomeScreenPure extends Component {
     return (
       <View style={styles.root}>
         <View style={styles.topContainer}>
-          <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'sansBold' }}>
+          <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'sansBold', color: Colors.alabasterColor }}>
             {'Mobile stocks observation system'}
           </Text>
         </View>

@@ -24,9 +24,11 @@ export default StackNavigator({
       headerStyle: {
         backgroundColor: Colors.platinumColor
       },
+      title: 'Stock details',
       titleStyle: {
         color: Colors.whiteColor
       },
+      headerTintColor: Colors.whiteColor,
       headerLeft: (
         <CloseButton feedback="opacity" onPress={() => navigation.goBack()}>
           <MaterialIcons

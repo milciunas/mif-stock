@@ -10,7 +10,6 @@ const styles = EStyleSheet.create({
     flex: 0.1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 20,
     backgroundColor: '$platinumColor'
   },
   bottomContainer: {

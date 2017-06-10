@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import {
   HomeReducer,
-  UserReducer
+  UserReducer,
+  StockDetailsReducer
 } from '../areas';
 import navigation from '../routes/navigationReducer';
 
 export default combineReducers({
   home: HomeReducer,
   navigation,
-  user: UserReducer
+  user: UserReducer,
+  stockDetails: StockDetailsReducer
 });
