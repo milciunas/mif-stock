@@ -1,10 +1,9 @@
 import React from 'react';
-import styled from 'styled-components/native';
 import { View } from 'react-native';
 import { Button, Icon } from 'native-base';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
-import { HomeScreen, ProfileScreen, GameScreen } from '../areas';
+import { HomeScreen, CurrencyScreen } from '../areas';
 import Colors from '../constants/Colors';
 
 const NavbarDefaultStyle = {
@@ -38,35 +37,21 @@ export default TabNavigator({
           style={{ marginBottom: 10 }} />
       )
     })
+  },
+  Currency: {
+    screen: CurrencyScreen,
+    navigationOptions: {
+      header: null,
+      headerStyle: NavbarDefaultStyle,
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons
+          name="currency-usd"
+          size={16}
+          color={tintColor}
+          style={{ marginBottom: 10 }} />
+      )
+    }
   }
-  // Game: {
-  //   screen: GameScreen,
-  //   navigationOptions: {
-  //     header: null,
-  //     headerStyle: NavbarDefaultStyle,
-  //     tabBarIcon: ({ tintColor }) => (
-  //       <FontAwesome
-  //         name="suitcase"
-  //         size={16}
-  //         color={tintColor}
-  //         style={{ marginBottom: 10 }} />
-  //     )
-  //   }
-  // },
-  // ProfileScreen: {
-  //   screen: ProfileScreen,
-  //   navigationOptions: {
-  //     header: null,
-  //     headerStyle: NavbarDefaultStyle,
-  //     tabBarIcon: ({ tintColor }) => (
-  //       <FontAwesome
-  //         name="address-card-o"
-  //         size={16}
-  //         color={tintColor}
-  //         style={{ marginBottom: 10 }} />
-  //     )
-  //   }
-  // }
 },
   {
     headerMode: 'screen',

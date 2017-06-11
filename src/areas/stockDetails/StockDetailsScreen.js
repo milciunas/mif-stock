@@ -15,6 +15,12 @@ import Colors from '../../constants/Colors';
 const now = new Date();
 const nowTime = Moment(now).format('HH:mm:ss');
 const todayDate = Moment(now).format('YYYY-MM-DD');
+const weekFromToday = Moment().subtract(7, 'd').format('YYYY-MM-DD');
+const monthFromToday = Moment().subtract(1, 'month').format('YYYY-MM-DD');
+const threeMonthsFromToday = Moment().subtract(3, 'month').format('YYYY-MM-DD');
+const yearFromToday = Moment().subtract(1, 'year').format('YYYY-MM-DD');
+
+let active = 'week';
 
 @connect(
   state => ({
@@ -22,12 +28,10 @@ const todayDate = Moment(now).format('YYYY-MM-DD');
   }),
   { fetchHistoricalData })
 class StockDetailsScreen extends Component {
-
   componentDidMount() {
     const { params: stock } = this.props.navigation.state;
-    const hStartDate = '2017-06-01';
 
-    this.props.fetchHistoricalData(stock.symbol, hStartDate, todayDate);
+    this.props.fetchHistoricalData(stock.symbol, weekFromToday, todayDate);
   }
 
   MapHistoricalData(data) {
@@ -42,11 +46,15 @@ class StockDetailsScreen extends Component {
     return result;
   }
 
-  ChangeChart() {
-
+  ChangeChart(stock, date, today, activate) {
+    active = activate;
+    return this.props.fetchHistoricalData(stock.symbol, date, today);
   }
 
   render() {
+    const activeStyle = 'rgba(27,154,170, 1)';
+    const inactiveStyle = 'rgba(0, 0, 0, 0.1)';
+
     const { params: stock } = this.props.navigation.state;
     const {
       historicalData: {
@@ -72,14 +80,14 @@ class StockDetailsScreen extends Component {
     return (
       <View style={{ backgroundColor: Colors.alabasterColor, flex: 1 }}>
         <View style={styles.topContainer}>
-          <Text style={{ fontFamily: 'sansBold', fontSize: 16, color: Colors.alabasterColor }}>
+          <Text style={{ fontFamily: 'sansBold', fontSize: 18, color: Colors.alabasterColor }}>
             {`${stock.name}`}{` (${stock.symbol})`}
           </Text>
           <View style={{ flexDirection: 'row' }}>
             <FontAwesome
               name="clock-o"
               size={16}
-              color="green"
+              color="white"
               style={{ alignSelf: 'center' }} />
             <Text style={{ paddingLeft: 5, color: Colors.alabasterColor }}>{nowTime}</Text>
           </View>
@@ -87,106 +95,173 @@ class StockDetailsScreen extends Component {
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <TouchableOpacity
             style={{ flex: 1 }}
-            onPress={this.ChangeChart(todayDate, todayDate)}>
+            onPress={() => { this.ChangeChart(stock, monthFromToday, todayDate, 'week'); }}>
             <Text style={{ textAlign: 'center' }}>Week</Text>
-            <View style={{ borderColor: 'rgba(27,154,170, 1)', borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+            {
+              active === 'week' ?
+                <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+              :
+                <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+            }
           </TouchableOpacity>
           <TouchableOpacity
             style={{ flex: 1 }}
-            onPress={() => {}}>
+            onPress={() => { this.ChangeChart(stock, monthFromToday, todayDate, 'month'); }}>
             <Text style={{ textAlign: 'center' }}>Month</Text>
-            <View style={{ borderColor: 'rgba(0, 0, 0, 0.1)', borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+            {
+              active === 'month' ?
+                <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+              :
+                <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+            }
           </TouchableOpacity>
           <TouchableOpacity
             style={{ flex: 1 }}
-            onPress={() => {}}>
+            onPress={() => { this.ChangeChart(stock, threeMonthsFromToday, todayDate, 'threeMonths'); }}>
+            <Text style={{ textAlign: 'center' }}>3 Months</Text>
+            {
+              active === 'threeMonths' ?
+                <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+              :
+                <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+            }
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ flex: 1 }}
+            onPress={() => { this.ChangeChart(stock, yearFromToday, todayDate, 'year'); }}>
             <Text style={{ textAlign: 'center' }}>Year</Text>
-            <View style={{ borderColor: 'rgba(0,0,0, 0.1)', borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+            {
+              active === 'year' ?
+                <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+              :
+                <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+            }
           </TouchableOpacity>
         </View>
         <Chart
           data={historicalData}
           height={200} />
         <ScrollView>
-          <StocksContainer style={{ paddingTop: 10 }}>
-            <Column>
-              <Text>Bid/Ask</Text>
-            </Column>
-            <Column>
-              <Text>{`${stock.bid}`}/{`${stock.ask}`}</Text>
-            </Column>
-          </StocksContainer>
-          <View style={styles.separator} />
-
-          <StocksContainer>
-            <Column>
-              <Text>Day's range</Text>
-            </Column>
-            <Column>
-              <Text>{`${stock.daysRange}`}</Text>
-            </Column>
-          </StocksContainer>
-          <View style={styles.separator} />
-
-          <StocksContainer>
-            <Column>
-              <Text>Open</Text>
-            </Column>
-            <Column>
-              <Text>{`${stock.open}`}</Text>
-            </Column>
-          </StocksContainer>
-          <View style={styles.separator} />
-
-          <StocksContainer>
-            <Column>
-              <Text>Volume</Text>
-            </Column>
-            <Column>
-              <Text>{`${stock.volume}`}</Text>
-            </Column>
-          </StocksContainer>
-          <View style={styles.separator} />
-
-          <StocksContainer>
-            <Column>
-              <Text>Average Vol.</Text>
-            </Column>
-            <Column>
-              <Text>{`${stock.volumeAvg}`}</Text>
-            </Column>
-          </StocksContainer>
-          <View style={styles.separator} />
-
-          <StocksContainer>
-            <Column>
-              <Text>Market Cap</Text>
-            </Column>
-            <Column>
-              <Text>{`${stock.marketCap}`}</Text>
-            </Column>
-          </StocksContainer>
-          <View style={styles.separator} />
-
-          <StocksContainer>
-            <Column>
-              <Text>P/E Ratio</Text>
-            </Column>
-            <Column>
-              <Text>{`${stock.peRatio}`}</Text>
-            </Column>
-          </StocksContainer>
-          <View style={styles.separator} />
-
-          <StocksContainer>
-            <Column>
-              <Text>Dividend (Yield)</Text>
-            </Column>
-            <Column>
-              <Text>{`${stock.dividendYield}`}</Text>
-            </Column>
-          </StocksContainer>
-          <View style={styles.separator} />
+          {
+            stock.bid || stock.ask ?
+              <View>
+                <StocksContainer style={{ paddingTop: 10 }}>
+                  <Column>
+                    <Text>Bid/Ask</Text>
+                  </Column>
+                  <Column>
+                    <Text>{`${stock.bid}`}/{`${stock.ask}`}</Text>
+                  </Column>
+                </StocksContainer>
+                <View style={styles.separator} />
+              </View>
+            : null
+          }
+          {
+            stock.daysRange ?
+              <View>
+                <StocksContainer>
+                  <Column>
+                    <Text>Day's range</Text>
+                  </Column>
+                  <Column>
+                    <Text>{`${stock.daysRange}`}</Text>
+                  </Column>
+                </StocksContainer>
+                <View style={styles.separator} />
+              </View>
+            : null
+          }
+          {
+            stock.open ?
+              <View>
+                <StocksContainer>
+                  <Column>
+                    <Text>Open</Text>
+                  </Column>
+                  <Column>
+                    <Text>{`${stock.open}`}</Text>
+                  </Column>
+                </StocksContainer>
+                <View style={styles.separator} />
+              </View>
+            : null
+          }
+          {
+            stock.volume ?
+              <View>
+                <StocksContainer>
+                  <Column>
+                    <Text>Volume</Text>
+                  </Column>
+                  <Column>
+                    <Text>{`${stock.volume}`}</Text>
+                  </Column>
+                </StocksContainer>
+                <View style={styles.separator} />
+              </View>
+            : null
+          }
+          {
+            stock.volumeAvg ?
+              <View>
+                <StocksContainer>
+                  <Column>
+                    <Text>Average Vol.</Text>
+                  </Column>
+                  <Column>
+                    <Text>{`${stock.volumeAvg}`}</Text>
+                  </Column>
+                </StocksContainer>
+                <View style={styles.separator} />
+              </View>
+            : null
+          }
+          {
+            stock.marketCap ?
+              <View>
+                <StocksContainer>
+                  <Column>
+                    <Text>Market Cap</Text>
+                  </Column>
+                  <Column>
+                    <Text>{`${stock.marketCap}`}</Text>
+                  </Column>
+                </StocksContainer>
+                <View style={styles.separator} />
+              </View>
+            : null
+          }
+          {
+            stock.peRatio ?
+            <View>
+              <StocksContainer>
+                <Column>
+                  <Text>P/E Ratio</Text>
+                </Column>
+                <Column>
+                  <Text>{`${stock.peRatio}`}</Text>
+                </Column>
+              </StocksContainer>
+              <View style={styles.separator} />
+            </View>
+            : null
+          }
+          {
+            stock.dividendYield ?
+              <View>
+                <StocksContainer>
+                  <Column>
+                    <Text>Dividend (Yield)</Text>
+                  </Column>
+                  <Column>
+                    <Text>{`${stock.dividendYield}`}</Text>
+                  </Column>
+                </StocksContainer>
+                <View style={styles.separator} />
+              </View>
+            : null
+          }
         </ScrollView>
       </View>
     );

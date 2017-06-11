@@ -80,12 +80,6 @@ class UserApi {
   }
 }
 
-const historicalTicker = [
-  'YHOO'
-];
-const hStartDate = '2017-05-01';
-const hEndDate = '2017-06-01';
-
 function _getHistoricalData(ticker, startDate, endDate) {
   return `https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?api_key=3FgcfULPHqr-9KT-Ke-a&ticker=${ticker}&date.gte=${startDate}&date.lte=${endDate}`;
 }
