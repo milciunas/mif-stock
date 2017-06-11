@@ -80,6 +80,8 @@ class UserApi {
   }
 }
 
+export const User = new UserApi();
+
 function _getHistoricalData(ticker, startDate, endDate) {
   return `https://www.quandl.com/api/v3/datatables/WIKI/PRICES.json?api_key=3FgcfULPHqr-9KT-Ke-a&ticker=${ticker}&date.gte=${startDate}&date.lte=${endDate}`;
 }
@@ -92,4 +94,32 @@ export const fetchHictoricalData = (ticker, startDate, endDate) =>
       throw error;
     });
 
-export const User = new UserApi();
+const currencyRateUrl = 'http://www.bankofcanada.ca/valet/observations/group/FX_RATES_DAILY';
+
+export function fetchRates(callback) {
+  return fetch(currencyRateUrl)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      const { seriesDetail, observations } = responseJson;
+      const latestObservations = observations[observations.length - 1];
+      delete latestObservations.d;
+      const rates = new Map();
+      rates.set('CAD', {
+        rate: 1,
+        code: 'CAD'
+      });
+      Object.keys(latestObservations).forEach((key) => {
+        const code = seriesDetail[key].label.replace('/CAD', '');
+        rates.set(code, {
+          rate: latestObservations[key].v,
+          code
+        });
+      });
+
+      callback(rates);
+    })
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
+}

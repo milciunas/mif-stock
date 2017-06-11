@@ -3,6 +3,7 @@ import { addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 
 // import { LoginScreen } from '../areas';
+// import { CurrencyScreen } from '../areas';
 import Navigator from './Navigator';
 
 @connect(
@@ -21,6 +22,7 @@ export default class AppNavigator extends Component {
     });
 
     return <Navigator navigation={navigation} />;
+    // return <CurrencyScreen />;
 
     // LOGINAS ISJUNGTAS TESTAVIMUI!
     // if (this.props.user.isLogged) {

@@ -6,7 +6,8 @@ import styled from 'styled-components/native';
 
 import HomeNavigator from './HomeNavigator';
 import {
-  StockDetailsScreen
+  StockDetailsScreen,
+  CurrencySelectionScreen
 } from '../areas';
 import Colors from '../constants/Colors';
 
@@ -25,6 +26,28 @@ export default StackNavigator({
         backgroundColor: Colors.platinumColor
       },
       title: 'Stock details',
+      titleStyle: {
+        color: Colors.whiteColor
+      },
+      headerTintColor: Colors.whiteColor,
+      headerLeft: (
+        <CloseButton feedback="opacity" onPress={() => navigation.goBack()}>
+          <MaterialIcons
+            name="close"
+            color="#fff"
+            size={30}
+          />
+        </CloseButton>
+      )
+    })
+  },
+  CurrencySelection: {
+    screen: CurrencySelectionScreen,
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: Colors.platinumColor
+      },
+      title: 'Select currency',
       titleStyle: {
         color: Colors.whiteColor
       },
