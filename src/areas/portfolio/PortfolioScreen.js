@@ -89,6 +89,23 @@ export default class PortfolioScreenPure extends Component {
     );
   }
 
+  _deleteItem(symbol) {
+    const portfolio = this.state.portfolio.filter(
+      (item) => {
+        console.log(item);
+        if (item.Symbol !== symbol) {
+          return item.Symbol;
+        }
+        return null;
+      }
+    );
+
+    this.setState({ portfolio });
+    AsyncStorage.setItem('portfolio', JSON.stringify(portfolio))
+      .then(json => console.log('success storing to async storage!'))
+      .catch(error => console.log('error storing to async storage!'));
+  }
+
   _renderRowPortfolio(rowData) {
     const stock = {
       symbol: rowData.Symbol,
@@ -113,7 +130,8 @@ export default class PortfolioScreenPure extends Component {
         <View style={{ flexDirection: 'column' }}>
           <TouchableOpacity
             style={{ height: 50 }}
-            onPress={() => navigate('StockDetails', stock)}>
+            onPress={() => navigate('StockDetails', stock)}
+            onLongPress={() => this._deleteItem(stock.symbol)}>
             <View style={{ flexDirection: 'row', width, paddingTop: 10 }}>
               <View style={{ flex: 0.4, paddingLeft: 20 }}>
                 <View style={{ flexDirection: 'column' }}>
