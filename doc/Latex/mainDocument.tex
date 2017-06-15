@@ -4,6 +4,10 @@
 
 \documentclass[a4paper,12pt,fleqn]{article}
 \input{allPacks}
+\graphicspath{ {Pav/} }
+\usepackage{graphicx}
+\usepackage{subcaption}
+\captionsetup{labelfont=bf,textfont=bf}
 
 \newtoggle{inLithuanian}
  %If the report is in Lithuanian, it is set to true; otherwise, change to false
@@ -22,8 +26,8 @@
 
 \begin{document}
  % #1 -report type, #2 - title, #3-7 students, #8 - supervisor
- \depttitlepage{Darbo/ataskaitos tipas}{Mobilioji akcijų kainų stebėjimo sistema}
-{3 kurso, IT2 grupės studentas, \\ Tautvydas Milčiūnas} 
+ \depttitlepage{Kursinis darbas}{Mobilioji akcijų kainų stebėjimo sistema}
+{3 kurso, 2 grupės studentas, \\ Tautvydas Milčiūnas} 
  {}{}{}{}% students 2-5
  {dr. Joana Katina}
 
@@ -44,32 +48,84 @@
 \input{introduction.tex}
 
 
-
  %the main part
 \newpage
-\section{Pirmasis skyrius}
-\label{sec:motivation}
-\subsection{Pirmojo skyriaus poskyris}
-\label{sec:example}
-Pateikiamas \ref{sec:example} poskyrio tekstas. Vienas iš šaltinių~\cite{KTZ}. Visas turinys priklauso \ref{sec:motivation} skyriui.
-
-\subsubsection{Pirmojo skyriaus pirmo poskyrio poskyris}
-\label{sec:data}
-Pateikiamas trečio lygio poskyrio tekstas.
-
-\begin{equation}
-x = \sum_{i=1}^N m_i
-\end{equation}
-
+\section{Panašių sistemų analizė}
+Vienas iš šaltinių~\cite{KTZ}. Prieš sistemos kūrimą svarbu surasti ir išanalizuoti panašias programėles, kurios padėtų susidaryti patogaus ir intuityvaus dizaino, bei funkcionalumo įvaizdį. Pirmoji pasirinkta programėlė -
+\href{https://play.google.com/store/apps/details?id=co.peeksoft.stocks}{„My Stocks Portfolio and Widget“}.  Antroji pasirinkta programėlė - \href{https://play.google.com/store/apps/details?id=org.dayup.stocks}{„Stocks - Realtime Stock Quotes“}. Abi aplikacijos yra skirtos akcijų rinkos stebėjimui, tad analizuodamas jas susidarysiu įspūdį, kaip turėtų būti tinkamai suformuluotas mano aplikacijos dizainas ir funkcionalumas.
+\subsection{„My Stocks Portfolio and Widget“ analizė}
+Ši programėlė (priedas \ref{app:priedas1}) skelbia naujienas iš akcijų rinkos ir leidžia vartotojui rankiniu būdu pridėti norimas stebėti akcijas. Bendras aplikacijos apipavidalinimas labai paprastas, tačiau informatyvus. Informacijos pagrindiniame lange nėra daug, tačiau paspaudus ant pasirinktos akcijos atvaizduojama visa reikalinga informacija kartu su istoriniais akcijos kainų kitimo grafikais (priedas \ref{app:priedas2}). Programėlė neturi automatinio akcijų atnaujinimo, reikia paspausti mygtuką, kad tai būtų įvykdyta. Taip pat yra galimybė nusipirkti akcijų ir matyti, ar uždirbama ar pinigai yra prarandami. Suteikiama galimybė kurti skirtingus akcijų portfelius, kur galima pridėti skirtingas grupes akcijų paketų ir juos taip grupuoti.
+\subsection{„Stocks - Realtime Stock Quotes“ analizė}
+Ši programėlė (priedas \ref{app:priedas3}) turi kelis skirtingus funkcionalumus.
+Informacijos atnaujinimas vyksta realiu metu, kai yra atidarytos akcijų rinkos. Pirmą kartą įjungus programėlę atvaizduojamas langas su daugybe skirtingų akcijų rinkų ir akcijų paketų. Yra atvaizduojama daug informacijos pagrindiniame lange ir yra sunku suprasti kokią informaciją skaičiai pristato. Paspaudus ant konkrečios akcijos susidūriau su dar didesniu informacijos kiekiu kartu su istoriniais kainų kitimo grafikais, naujienomis apie konkrečią akciją, jos detalią apžvalgą ir financiniais duomenimis. Ši aplikacija pasižymi labai dideliu ir konkrečiu kiekiu apie kiekvieną konkrečią akciją, tačiau nėra labai intuityvi ir sukelia informacijos pertekliaus jausmą. Šioje aplikacijoje galima susikurti savo portfelius ir pirkti akcijas. Tam, kad galima būtų pirkti akcijas privaloma prisijungti prie sistemos naudojant savo realius duomenis.
+\subsection{Analizės išvados}
 \begin{table}[!ht]\centering
-\caption{Lentelė ... }
-\label{tabl:table}
-\begin{tabular}{l|r|}
-test&test\\ \hline
-test&test\\
-\end{tabular}
+	\begin{tabular}{|l|c|c|ll}
+		\cline{1-3}
+		\textbf{Funckionalumas} & \textbf{\href{https://play.google.com/store/apps/details?id=co.peeksoft.stocks}{„My Stocks Portfolio and Widget“}} & \textbf{\href{https://play.google.com/store/apps/details?id=org.dayup.stocks}{„Stocks - Realtime Stock Quotes“}} &  \\ \cline{1-3}
+		Registracija&-&+& \\ \cline{1-3}
+		Akcijų rinkos&-&+& \\ \cline{1-3}
+		Portfelio kūrimas&+&+& \\ \cline{1-3}
+		Akcijų naujinimas&-&+& \\ \cline{1-3}
+		Akcijų pirkimas&+&+& \\ \cline{1-3}
+	\end{tabular}
+	\caption{Panašių programėlių analizė}
+	\label{tabl:isvadu-lentele}
 \end{table}
+Lentelėje \ref{tabl:isvadu-lentele} pavaizduoti abiejų nagrinėtų aplikacijų privalumai ir trūkumai. Aplikacija „My Stocks Portfolio and Widget“ neturėjo prisijungimo galimybės, nebuvo galimas stebėti iš anksto sukurtų akcijų rinkų, bei nebuvo automatinio akcijų atnaujinimo vos joms pasikeitus. Aplikacijoje „Stocks - Realtime Stock Quotes“ visi funkcionalumai įgyvendinti puikiai, tačiau pateikta informacija yra nepaaiškinta ir vartotojui, kuris sistemą mato pirmą kartą būtų sunku suprasti kas yra pavaizduota tam tikruose languose.
+ 
+\newpage
+\section{Teorinis sistemos modelis}
+\subsection{Sistemos reikalavimai}
+Funkciniai reikalavimai:
+\begin{enumerate}[leftmargin=2cm]
+	\item Turi būti įgyvendintas valiutų keitimo įrankis
+	\item Turi būti įgyvendintas grafikų atvaizdavimas ir keitimas
+\end{enumerate}
 
+Nefunkciniai reikalavimai:
+\begin{enumerate}[leftmargin=2cm]
+	\item Aiškiai atvaizduojama informacija
+	\item Patogus ir intuityvus valdymas
+\end{enumerate}
+
+\subsection{Technologijų pasirinkimas}
+Programėlei realizuoti pasirinkau „Facebook“ įmonės sukurtą „JavaScript“ programavimo kalbos „React Native“ biblioteką. Programos paleidimui, kompiliavimui ir versijavimui pasirinkau nepriklausomų programuotojų sukurtą nemokamą produktą „Expo SDK“. Savo programėlę testavau nemokama „Android“ modeliavimo programa – „Genymotion“. Naršymą programėlės viduje įgyvendinau pasitelkdamas „React Navigation“ įrankį. Įvairių komponentų dalių ir būsenų išsaugojimą ir pernešimą programėlės viduje įgyvendinti pasitelkiau „Redux“ įrankį.
+\subsubsection{„Expo SDK“ platforma}
+Kuriant šią programėlę, man buvo labai svarbu kuo labiau supaprastinti programėlės kompiliavimo ir versijavimo procesą. Tam, kad nereikėtų nuolatos keisti kompiliavimo ir programėlės sudarymo proceso rankiniu būdu pasirinkau „Expo SDK“, kaip platformą savo programėlei. Ši platformą labai palengviną programėlės kompiliavimo ir kūrimo procesą automatiškai konfigūruodama kompiliavimą kiekvieną kartą pakeitus programinį kodą. Programuojant šioje platformoje man tapo prieinamas būdas naudoti „React Native“ biblioteką ir visą programą parašyti „JavaScript“ kalba be jokių sudėtingų kompiliatoriaus konfigūracijų. Ši platforma tapo labai naudinga tuo, kad ją įrašius iškarto galima naudotis daugybe integruotų bibliotekų, tokių, kaip pastarasis „React Native“, įvairios dizaino ir funkcionalumo bibliotekos. Taip pat ši platforma labai patogi darbui su "Android" sistema dėl integruotų įrankių, kurie leidžia kompiliutą kodą iškart atvaizduoti mobilioje sistemoje ir atnaujinti vos atnaujinus programinio kodo dalį.
+\subsubsection{„React Native ir Redux“}
+Funkcionalumui įgyvendinti pasirinkau „React Native“ programavimo kalbą. Ši programavimo kalba yra paremta savaisiais(ang. Native) mobiliųjų įrenginių programiniais kodais ir subendrina programavimą kelioms skirtingoms platformoms iš karto. Ši programavimo kalba yra sukurta, kaip „JavaScript“ kalbos biblioteka. Kadangi mano programėlėje yra būtinas bendravimas tarp skirtingų komponentų ir informacijos dalijimasis nusprendžiau tai įgyvendinti naudodamasis „Redux“ biblioteka. Ši biblioteka leidžia lengvai valdyti aplikacijos atmintyje laikomas savybes ir komponentų parametrus ir juos perduoti kitiems komponentas esantiems ne būtinai tame pačiame lygmenyje ar tame pačiame navigacijos lygyje.
+\subsubsection{„Genymotion“}
+Programėlės testavimui pasirinkau nemokamą modeliavimo įrankio „Genymotion“ versiją. Šis įrankis leidžia sukompiliuotą kodą atvaizduoti sumodeliuotame „Android“ įrenginyje kaskart atnaujinus programinį kodą. Taip smarkiai padidinamas programavimo darbo našumas, nes testavimas gali vykti ypatingai greitai ir nėra būtinybės programėlės testuoti tikrame įrenginyje.
+\subsection{Vartotojo sąsaja}
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{vartotojo-sasaja.png}
+		\caption{Akcijų kainų atvaizdavimas}
+		\label{fig:sas1}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{vartotojo-sasaja2.png}
+		\caption{Valiutų keitimo įrankis}
+		\label{fig:sas2}
+	\end{subfigure}
+	\caption{Pradinės vartotojo sąsajos teorinis modelis}
+	\label{fig:sas}
+\end{figure}
+
+Paveikslėlis \ref{fig:sas} vaizduoja planuotos vartotojo sąsajos modelį. Paveikslėlio \ref{fig:sas1} modelis yra suskirstytas į skirtingas dalis, kurios atstoja skirtingą funkcionalumą. 1 - navigacijos juosta skirta pridėti naują akciją į sarašą 3. 2 - laukas skirtas tekstui. 3 - pasirinktų akcijų atvaizdavimo laukai. Paspaudus ant akcijos antvaizdavimo lauko yra įvykdomas naršymo veiksmas ir atidaromas langas su detalesne akcijos informacija. 4 ir 5 - apatinė naršymo juosta skirta pereiti nuo akcijų atvaizdavimo komponento prie valiutos keitimo komponento. 6 - naršymo juosta skirta grįžimui į pirmąjį langą. 7 - mygtukai skirti keisti akcijos kainų kitimo grafiko laiko intarpą. 8 - akcijos kainų kitimo grafikas. 9 - detali akcijos informacija. Paveikslėlio \ref{fig:sas2} vaizduojamas modelis atvaizduoja valiutų keitimo įrankio funkcionalumą. 1 - Laukas skirtas tekstui. 2 - Laukas skirtas norimam pinigų kiekiui įvesti. 3 - Parinkta įvesties ir išvesties valiuta, kurias paspaudus galima pakeisti į norimą valiutą.
+
+\newpage
+\section{Praktinis programėlės įgyvendinimas}
+Norint įgyvendinti mobilią akcijų stebėjimo sistemą man pirmiausia reikėjo išsiaiškinti, kur galiu gauti nemokamus ir patikimus akcijų duomenis.
+\subsection{Išorinių duomenų šaltinių pasirinkimas}
+
+„“
+
+Pasirinkau apjungti kelis skirtingus duomenų šaltinius, nes visi suteikė skirtingo funkcionalumo. „Yahoo Stocks API“ naudojau pagrindinių akcijų duomenų gavimui. Ši paslaugų tiekimo tarnyba ją kviečiant su norimu akcijos simboliu grąžina sąrašą duomenų apie pasirinktą akciją. Istoriniams akcijų pakitimų grafikams atvaizduoti naudojau „Quandl“ servisą, kuris grąžiną akcijų kainas pasirinktam laikotarpiui. Gautiems istoriniams kainų pakitimų grafikams atvaizduoti naudojausi išorine paslauga „HighCharts“. Ši paslauga leidžia atvaizduoti norimus duomenis pasirinktais grafikais, kurie pasirenkami siunčiant sukurtą konfigūraciją į išorinį paslaugų tiekėją.
 
  %Conclusions section
 \sectionWithoutNumber{\keyWordConclusions}{conclu}
@@ -86,11 +142,37 @@ test&test\\
 %% this part is optional
 \newpage
 \begin{appendices}
-Dokumentą sudaro du priedai: \ref{app:a} priede  ....
-\newpage
-\section{Pirmojo priedo pavadinimas}
-\label{app:a}
-Pirmojo priedo tekstas ...
+	
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+		\section{Pirmoji analizuota aplikacija}
+		\includegraphics[scale=0.532]{priedas1.jpg}
+		\label{app:priedas1}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+		\section{Pirmoji analizuota aplikacija}
+		\includegraphics[scale=0.4]{priedas2.png}
+		\label{app:priedas2}
+	\end{subfigure}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+		\section{Antroji analizuota aplikacija}
+		\includegraphics[scale=.4]{priedas3.png}
+		\label{app:priedas3}
+	\end{subfigure}%
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+		\section{Antroji analizuota aplikacija}
+		\includegraphics[scale=0.4]{priedas4.png}
+		\label{app:priedas4}
+	\end{subfigure}
+\end{figure}
 
 \newpage
 \section{Antrojo priedo pavadinimas}
