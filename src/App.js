@@ -46,7 +46,6 @@ class App extends React.Component {
   }
 
   render() {
-    Moment.locale('LT');
     if (!this.state.fontLoaded || !this.state.ready) {
       return <AppLoading />;
     }

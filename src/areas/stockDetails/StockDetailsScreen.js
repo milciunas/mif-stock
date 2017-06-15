@@ -92,55 +92,60 @@ class StockDetailsScreen extends Component {
             <Text style={{ paddingLeft: 5, color: Colors.alabasterColor }}>{nowTime}</Text>
           </View>
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <TouchableOpacity
-            style={{ flex: 1 }}
-            onPress={() => { this.ChangeChart(stock, monthFromToday, todayDate, 'week'); }}>
-            <Text style={{ textAlign: 'center' }}>Week</Text>
-            {
-              active === 'week' ?
-                <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
-              :
-                <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
-            }
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{ flex: 1 }}
-            onPress={() => { this.ChangeChart(stock, monthFromToday, todayDate, 'month'); }}>
-            <Text style={{ textAlign: 'center' }}>Month</Text>
-            {
-              active === 'month' ?
-                <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
-              :
-                <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
-            }
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{ flex: 1 }}
-            onPress={() => { this.ChangeChart(stock, threeMonthsFromToday, todayDate, 'threeMonths'); }}>
-            <Text style={{ textAlign: 'center' }}>3 Months</Text>
-            {
-              active === 'threeMonths' ?
-                <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
-              :
-                <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
-            }
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{ flex: 1 }}
-            onPress={() => { this.ChangeChart(stock, yearFromToday, todayDate, 'year'); }}>
-            <Text style={{ textAlign: 'center' }}>Year</Text>
-            {
-              active === 'year' ?
-                <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
-              :
-                <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
-            }
-          </TouchableOpacity>
-        </View>
-        <Chart
-          data={historicalData}
-          height={200} />
+        {
+          historicalData.length === 0 ? null :
+            <View>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <TouchableOpacity
+                  style={{ flex: 1, padding: 10 }}
+                  onPress={() => { this.ChangeChart(stock, monthFromToday, todayDate, 'week'); }}>
+                  <Text style={{ textAlign: 'center' }}>Week</Text>
+                  {
+                    active === 'week' ?
+                      <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+                    :
+                      <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+                  }
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{ flex: 1, padding: 10 }}
+                  onPress={() => { this.ChangeChart(stock, monthFromToday, todayDate, 'month'); }}>
+                  <Text style={{ textAlign: 'center' }}>Month</Text>
+                  {
+                    active === 'month' ?
+                      <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+                    :
+                      <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+                  }
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{ flex: 1, padding: 10 }}
+                  onPress={() => { this.ChangeChart(stock, threeMonthsFromToday, todayDate, 'threeMonths'); }}>
+                  <Text style={{ textAlign: 'center' }}>3 Months</Text>
+                  {
+                    active === 'threeMonths' ?
+                      <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+                    :
+                      <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+                  }
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{ flex: 1, padding: 10 }}
+                  onPress={() => { this.ChangeChart(stock, yearFromToday, todayDate, 'year'); }}>
+                  <Text style={{ textAlign: 'center' }}>Year</Text>
+                  {
+                    active === 'year' ?
+                      <View style={{ borderColor: activeStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+                    :
+                      <View style={{ borderColor: inactiveStyle, borderBottomWidth: 1, width: '90%', alignSelf: 'center' }} />
+                  }
+                </TouchableOpacity>
+              </View>
+              <Chart
+                data={historicalData}
+                height={200} />
+            </View>
+        }
         <ScrollView>
           {
             stock.bid || stock.ask ?

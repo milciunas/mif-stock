@@ -1,10 +1,20 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Colors from '../../../constants/Colors';
 
 const styles = EStyleSheet.create({
   root: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '$whiteColor'
+  },
+  titleText: {
+    fontFamily: 'sansBold',
+    fontSize: 18,
+    alignSelf: 'center',
+    textAlign: 'center',
+    flex: 0.8,
+    justifyContent: 'center',
+    color: Colors.whiteColor
   },
   topContainer: {
     flex: 0.1,

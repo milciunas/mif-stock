@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, ListView, TouchableOpacity, RefreshControl } from 'react-native';
+import { Icon } from 'native-base';
+import {
+  Text,
+  View,
+  ListView,
+  TouchableOpacity,
+  RefreshControl
+} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 import { connect } from 'react-redux';
@@ -26,6 +33,17 @@ export default class HomeScreenPure extends Component {
 
   componentDidMount() {
     this.props.fetchYahooFinance();
+    this.fetchSingleStocks('');
+  }
+
+  async fetchSingleStocks(ticker) {
+    try {
+      const response = await fetch(`http://d.yimg.com/aq/autoc?query=${ticker}&region=US&lang=en-US`);
+      const responseJson = await response.json();
+      this.setState({ searchResults: responseJson.ResultSet.Result });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   MapStocks(data) {
@@ -47,9 +65,6 @@ export default class HomeScreenPure extends Component {
       peRatio: item.PERatio,
       dividendYield: item.DividendYield
     }));
-
-    console.log('NOT DESTRUCTED: ', data);
-
     return stocks;
   }
 
@@ -59,7 +74,7 @@ export default class HomeScreenPure extends Component {
       <View style={{ flexDirection: 'column' }}>
         <TouchableOpacity onPress={() => navigate('StockDetails', rowData)}>
           <View style={styles.stocksContainer}>
-              <View style={{ flex: 0.7 }}>
+              <View style={{ flex: 0.4 }}>
                 <View style={{ flexDirection: 'column' }}>
                   <Text style={{ fontFamily: 'sansBold' }}>{`${rowData.name}`}</Text>
                   <View style={{ flexDirection: 'row' }}>
@@ -72,7 +87,7 @@ export default class HomeScreenPure extends Component {
                   </View>
                 </View>
               </View>
-              <View style={{ flex: 0.3 }}>
+              <View style={{ flex: 0.3, paddingLeft: 70 }}>
                 <Text>{`Price: ${rowData.lastPrice}`}</Text>
                 {
                   rowData.change.includes('-') ?
@@ -101,34 +116,36 @@ export default class HomeScreenPure extends Component {
     const {
       finance: {
         isFetched,
-        data,
-        error
+        data
       }
     } = this.props;
-
-    if (!isFetched) {
-      return (
-        <LoadingScreen />
-      );
-    } else if (error.on) {
-      return (
-        <View>
-          <Text>{error.message}</Text>
-        </View>
-      );
-    }
     const destructed = this.MapStocks(data);
 
     return (
       <View style={styles.root}>
         <View style={styles.topContainer}>
-          <Text style={{ fontSize: 18, textAlign: 'center', fontFamily: 'sansBold', color: Colors.alabasterColor }}>
-            {'Mobile stocks observation system'}
-          </Text>
+          <View style={{ flexDirection: 'row' }}>
+              <Text
+                style={styles.titleText}>
+                {'Stocks Observation'}
+              </Text>
+              <TouchableOpacity
+                onPress={() => this._onRefresh()}
+                style={{ flex: 0.2 }}>
+                <Icon
+                  name="refresh"
+                  style={{
+                    fontSize: 30,
+                    color: Colors.whiteColor,
+                    alignSelf: 'flex-end',
+                    padding: 15
+                  }} />
+              </TouchableOpacity>
+            </View>
         </View>
         <View style={styles.bottomContainer}>
           {
-            !isFetched ? null :
+            !isFetched ? <LoadingScreen /> :
               <ListView
                 dataSource={this.dataSource.cloneWithRows(destructed)}
                 renderRow={(rowData) => this._renderRow(rowData)}

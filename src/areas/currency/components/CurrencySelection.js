@@ -9,6 +9,7 @@ import {
   Image
 } from 'react-native';
 
+import Colors from '../../../constants/Colors';
 import CurrencyData from './CurrencyData';
 
 export default class CurrencySelectionScreen extends Component {
@@ -21,7 +22,7 @@ export default class CurrencySelectionScreen extends Component {
         visible={this.props.visible}
         onRequestClose={() => {}}
         >
-        <View style={{ marginTop: 22 }}>
+        <View style={{ backgroundColor: Colors.alabasterColor }}>
           <ListView
             dataSource={this.props.dataSource}
             renderHeader={() => (

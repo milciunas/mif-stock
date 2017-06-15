@@ -3,12 +3,10 @@ import { Platform } from 'react-native';
 
 let url;
 
-// Cause of genymotion we need to change the url here
-// http://stackoverflow.com/questions/5528850/how-to-connect-localhost-in-android-emulator
 if (Platform.OS !== 'ios') {
   url = 'http://10.0.3.2:5000/api';
 } else {
-  url = 'http://localhost:3000/api';
+  url = 'http://localhost:5000/api';
 }
 
 axios.defaults.baseURL = url;
@@ -59,6 +57,14 @@ const financeUrl = `${baseUrl}${searchString}(${mappedCompanies})&format=json&en
 
 export const fetchYahooFinance = () =>
   fetch(financeUrl)
+    .then(res => res.json())
+    .catch((error) => {
+      console.log(`Cant fetch google finances, check if url is correct!!!${error.message}`);
+      throw error;
+    });
+
+export const fetchYahooFinanceSingle = (ticker) =>
+  fetch(`${baseUrl}${searchString}('${ticker}')&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`)
     .then(res => res.json())
     .catch((error) => {
       console.log(`Cant fetch google finances, check if url is correct!!!${error.message}`);

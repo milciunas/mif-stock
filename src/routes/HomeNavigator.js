@@ -1,9 +1,7 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Button, Icon } from 'native-base';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
-import { HomeScreen, CurrencyScreen } from '../areas';
+import { HomeScreen, CurrencyScreen, PortfolioScreen } from '../areas';
 import Colors from '../constants/Colors';
 
 const NavbarDefaultStyle = {
@@ -15,20 +13,6 @@ export default TabNavigator({
     screen: HomeScreen,
     navigationOptions: () => ({
       header: null,
-      headerStyle: NavbarDefaultStyle,
-      // headerRight: (
-      //   <View style={{ paddingTop: 20 }}>
-      //     <Button transparent>
-      //       <Icon
-      //         name="search"
-      //         style={{
-      //           fontSize: 30,
-      //           color: Colors.whiteColor
-      //         }}
-      //       />
-      //     </Button>
-      //   </View>
-      // ),
       tabBarIcon: ({ tintColor }) => (
         <FontAwesome
           name="home"
@@ -37,6 +21,20 @@ export default TabNavigator({
           style={{ marginBottom: 10 }} />
       )
     })
+  },
+  Portfolio: {
+    screen: PortfolioScreen,
+    navigationOptions: {
+      header: null,
+      headerStyle: NavbarDefaultStyle,
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons
+          name="briefcase"
+          size={16}
+          color={tintColor}
+          style={{ marginBottom: 10 }} />
+      )
+    }
   },
   Currency: {
     screen: CurrencyScreen,
