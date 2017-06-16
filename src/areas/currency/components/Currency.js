@@ -7,6 +7,7 @@ import {
   ListView,
   TouchableHighlight,
   TouchableWithoutFeedback,
+  Dimensions,
   Image,
   Keyboard
 } from 'react-native';
@@ -20,6 +21,7 @@ import Colors from '../../../constants/Colors';
 
 const highlightColor = '#ececec';
 const borderColor = '#c2c2c2';
+const { width } = Dimensions.get('window');
 
 function calculateRate(input, inputRate, outputRate) {
   const exchangeRate = inputRate / outputRate;
@@ -79,24 +81,22 @@ export default class CurrencyScreen extends Component {
     });
   }
 
-  title() {
-    // if (this.state.keyboardVisible) {
-    //   return null;
-    // }
-    return (
-      <View style={styles.title}>
-        <Text style={styles.titleText}>{'Currency Converter'}</Text>
-      </View>
-    );
-  }
-
   converter() {
     if (this.state.loading) { return null; }
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={[styles.container, { backgroundColor: Colors.alabasterColor }]}>
-          <View style={{ flex: 0.2, width: '100%', margin: 100 }}>
-            {this.title()}
+          <View style={styles.topContainer}>
+            <View style={{ flexDirection: 'row' }}>
+              <Text
+                style={styles.titleText}>
+                {'Currency converter'}
+              </Text>
+              <Text
+                style={{ flex: 1 }}>
+                {''}
+              </Text>
+            </View>
           </View>
           <View style={styles.inner}>
             <View style={{ flexDirection: 'row' }}>
@@ -133,7 +133,9 @@ export default class CurrencyScreen extends Component {
             </View>
             <View style={{ flexDirection: 'row' }}>
               <TextInput
-                style={styles.textInput}
+                editable={false}
+                selectTextOnFocus={false}
+                style={[styles.textInput, { backgroundColor: 'rgba(162,162,162, 0.2)' }]}
                 keyboardType="numeric"
                 keyboardAppearance="dark"
                 underlineColorAndroid="transparent"
@@ -208,56 +210,34 @@ export default class CurrencyScreen extends Component {
       </View>
     );
   }
-
-  // render() {
-  //   const { navigate } = this.props.navigation;
-  //   return (
-  //     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-  //       <Text>{'Currency Converter'}</Text>
-  //       <View style={{ flexDirection: 'row', marginLeft: 10, marginRight: 10 }}>
-  //         <TextInput
-  //           style={styles.textInput}
-  //           onChangeText={(text) => this.setState({ text })}
-  //           value={this.state.text}
-  //           keyboardType="numeric"
-  //           maxLength={20}
-  //           multiline={false}
-  //           underlineColorAndroid="transparent"
-  //         />
-  //       </View>
-  //       <Button
-  //         title="Currency"
-  //         onPress={() => navigate('CurrencySelection')} />
-  //     </View>
-  //   );
-  // }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 8,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  title: {
-    flex: 1,
+  topContainer: {
+    flex: 0.2,
+    maxHeight: 56,
+    width,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor,
-    padding: 8,
-    width: '100%'
+    backgroundColor: Colors.platinumColor
   },
   titleText: {
-    fontSize: 30,
-    fontWeight: '600',
+    flex: 1,
     fontFamily: 'sansBold',
-    color: Colors.platinumColor
+    fontSize: 20,
+    alignSelf: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
+    color: Colors.whiteColor
   },
   inner: {
-    flex: 1,
-    padding: 8,
+    flex: 0.8,
+    padding: 20,
     justifyContent: 'center',
     alignItems: 'center'
   },

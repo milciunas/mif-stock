@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Icon } from 'native-base';
 import {
   AsyncStorage,
+  Alert,
   Text,
   View,
   ListView,
@@ -23,7 +24,6 @@ export default class PortfolioScreenPure extends Component {
     this.state = {
       searchResults: [],
       searchOn: false,
-      destroySerchResults: false,
       portfolio: [],
       test: []
     };
@@ -33,10 +33,7 @@ export default class PortfolioScreenPure extends Component {
   }
 
   componentDidMount() {
-    this.fetchSingleStocks('');
-    this.fetchYahooSingle('');
-    // AsyncStorage.removeItem('portfolio', (err) => console.log('finished', err));
-    const aaa = AsyncStorage.getItem('portfolio')
+    AsyncStorage.getItem('portfolio')
       .then(req => JSON.parse(req))
       .then(json => {
         if (json.length > 0) {
@@ -44,6 +41,9 @@ export default class PortfolioScreenPure extends Component {
         }
       })
       .catch(error => console.log('No items'));
+
+    this.fetchSingleStocks('');
+    this.fetchYahooSingle('');
   }
 
   async fetchSingleStocks(ticker) {
@@ -63,12 +63,34 @@ export default class PortfolioScreenPure extends Component {
       const portfolioState = this.state.portfolio;
       if (responseJson.query.results) {
         if (responseJson.query.results.quote.Ask && responseJson.query.results.quote.Open) {
-          portfolioState.push(responseJson.query.results.quote);
-          this.setState({ portfolio: portfolioState });
-          this.setState({ test: responseJson.query.results.quote });
-          AsyncStorage.setItem('portfolio', JSON.stringify(portfolioState))
-            .then(json => console.log('success storing to async storage!'))
-            .catch(error => console.log('error storing to async storage!'));
+          let isFound = false;
+          for (let i = 0; i < this.state.portfolio.length; i++) {
+            if (this.state.portfolio[i].Symbol === responseJson.query.results.quote.Symbol) {
+              isFound = true;
+            } else {
+              isFound = false;
+            }
+          }
+
+          console.log(isFound);
+
+          if (!isFound) {
+            portfolioState.push(responseJson.query.results.quote);
+            this.setState({ portfolio: portfolioState });
+            this.setState({ test: responseJson.query.results.quote });
+
+            AsyncStorage.setItem('portfolio', JSON.stringify(portfolioState))
+              .then(json => console.log('success storing to async storage!'))
+              .catch(error => console.log('error storing to async storage!'));
+          } else {
+            Alert.alert(
+              'Attention!',
+              'Stock is already in a portfolio',
+              [
+                { text: 'Dismiss', onPress: () => {} }
+              ]
+            );
+          }
         }
       }
     } catch (error) {
@@ -79,7 +101,10 @@ export default class PortfolioScreenPure extends Component {
   _renderRow(rowData) {
     return (
         <View style={{ flexDirection: 'column' }}>
-          <TouchableOpacity onPress={() => this.fetchYahooSingle(rowData.symbol)}>
+          <TouchableOpacity onPress={() => {
+            this.setState({ searchOn: false, searchResults: [] });
+            this.fetchYahooSingle(rowData.symbol);
+          }}>
             <View style={styles.stocksContainer}>
               <Text>{rowData.symbol}</Text>
             </View>
@@ -92,7 +117,6 @@ export default class PortfolioScreenPure extends Component {
   _deleteItem(symbol) {
     const portfolio = this.state.portfolio.filter(
       (item) => {
-        console.log(item);
         if (item.Symbol !== symbol) {
           return item.Symbol;
         }
@@ -126,39 +150,41 @@ export default class PortfolioScreenPure extends Component {
       dividendYield: rowData.DividendYield
     };
     const { navigate } = this.props.navigation;
+    const searchOn = this.state.searchOn;
     return (
-        <View style={{ flexDirection: 'column' }}>
-          <TouchableOpacity
-            style={{ height: 50 }}
-            onPress={() => navigate('StockDetails', stock)}
-            onLongPress={() => this._deleteItem(stock.symbol)}>
-            <View style={{ flexDirection: 'row', width, paddingTop: 10 }}>
-              <View style={{ flex: 0.4, paddingLeft: 20 }}>
-                <View style={{ flexDirection: 'column' }}>
-                  <Text style={{ fontFamily: 'sansBold' }}>{`${stock.name}`}</Text>
-                  <View style={{ flexDirection: 'row' }}>
-                    <FontAwesome
-                      name="clock-o"
-                      size={16}
-                      color="green"
-                      style={{ alignSelf: 'center' }} />
-                    <Text>{` ${stock.lastTradeTime}`}</Text>
-                  </View>
+      searchOn ? null :
+      <View style={{ flexDirection: 'column' }}>
+        <TouchableOpacity
+          style={{ height: 50 }}
+          onPress={() => navigate('StockDetails', stock)}
+          onLongPress={() => this._deleteItem(stock.symbol)}>
+          <View style={{ flexDirection: 'row', width, paddingTop: 10 }}>
+            <View style={{ flex: 0.4, paddingLeft: 20 }}>
+              <View style={{ flexDirection: 'column' }}>
+                <Text style={{ fontFamily: 'sansBold' }}>{`${stock.name}`}</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <FontAwesome
+                    name="clock-o"
+                    size={16}
+                    color="green"
+                    style={{ alignSelf: 'center' }} />
+                  <Text>{` ${stock.lastTradeTime}`}</Text>
                 </View>
               </View>
-              <View style={{ flex: 0.3, paddingLeft: 70 }}>
-                <Text>{`Price: ${stock.lastPrice}`}</Text>
-                {
-                  stock.change.includes('-') ?
-                    <Text style={{ color: 'red' }}>{`${stock.change}`}{`(${stock.changeInPercent})`}</Text>
-                  :
-                    <Text style={{ color: 'green' }}>{`${stock.change}`}{`(${stock.changeInPercent})`}</Text>
-                }
-              </View>
             </View>
-          </TouchableOpacity>
-          <View style={styles.separator} />
-        </View>
+            <View style={{ flex: 0.3, paddingLeft: 70 }}>
+              <Text>{`Price: ${stock.lastPrice}`}</Text>
+              {
+                stock.change.includes('-') ?
+                  <Text style={{ color: 'red' }}>{`${stock.change}`}{`(${stock.changeInPercent})`}</Text>
+                :
+                  <Text style={{ color: 'green' }}>{`${stock.change}`}{`(${stock.changeInPercent})`}</Text>
+              }
+            </View>
+          </View>
+        </TouchableOpacity>
+        <View style={styles.separator} />
+      </View>
     );
   }
 
@@ -171,6 +197,7 @@ export default class PortfolioScreenPure extends Component {
         {
           !this.state.searchOn ? null :
             <SearchBar
+              placeholder={'YHOO, AAPL, MSFT'}
               data={this.state.searchResults}
               handleSearch={(item) => this.fetchSingleStocks(item)}
               onBack={() => this.setState({ searchOn: false, searchResults: [] })}
@@ -179,7 +206,7 @@ export default class PortfolioScreenPure extends Component {
             />
         }
         {
-          this.state.searchResults.length === 0 ? null :
+          this.state.searchResults.length === 0 || !this.state.searchOn ? null :
             <View style={{ paddingTop: 70, backgroundColor: '#fff', minHeight: 50, maxHeight: 180 }}>
               <ListView
                 dataSource={this.dataSource.cloneWithRows(searchResults)}
@@ -199,12 +226,13 @@ export default class PortfolioScreenPure extends Component {
                   onPress={() => this.setState({ searchOn: true })}
                   style={{ flex: 1 }}>
                   <Icon
-                    name="search"
+                    name="add"
                     style={{
                       fontSize: 30,
                       color: Colors.whiteColor,
                       alignSelf: 'flex-end',
-                      padding: 13
+                      padding: 13,
+                      paddingRight: 15
                     }} />
                 </TouchableOpacity>
               </View>
@@ -259,8 +287,9 @@ const styles = EStyleSheet.create({
     opacity: 0.1
   },
   titleText: {
+    paddingRight: 160,
     fontFamily: 'sansBold',
-    fontSize: 18,
+    fontSize: 22,
     alignSelf: 'center',
     textAlign: 'center',
     flex: 1,

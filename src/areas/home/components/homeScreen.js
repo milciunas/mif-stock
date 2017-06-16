@@ -131,7 +131,7 @@ export default class HomeScreenPure extends Component {
               </Text>
               <TouchableOpacity
                 onPress={() => this._onRefresh()}
-                style={{ flex: 0.2 }}>
+                style={{ flex: 1 }}>
                 <Icon
                   name="refresh"
                   style={{

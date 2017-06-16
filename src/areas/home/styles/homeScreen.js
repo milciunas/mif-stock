@@ -9,21 +9,22 @@ const styles = EStyleSheet.create({
   },
   titleText: {
     fontFamily: 'sansBold',
-    fontSize: 18,
+    fontSize: 20,
     alignSelf: 'center',
     textAlign: 'center',
-    flex: 0.8,
+    flex: 1,
     justifyContent: 'center',
     color: Colors.whiteColor
   },
   topContainer: {
-    flex: 0.1,
+    flex: 0.2,
+    maxHeight: 56,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '$platinumColor'
   },
   bottomContainer: {
-    flex: 1,
+    flex: 0.8,
     paddingTop: 10,
     justifyContent: 'center',
     backgroundColor: '$alabasterColor'

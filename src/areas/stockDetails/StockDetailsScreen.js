@@ -98,7 +98,7 @@ class StockDetailsScreen extends Component {
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <TouchableOpacity
                   style={{ flex: 1, padding: 10 }}
-                  onPress={() => { this.ChangeChart(stock, monthFromToday, todayDate, 'week'); }}>
+                  onPress={() => { this.ChangeChart(stock, weekFromToday, todayDate, 'week'); }}>
                   <Text style={{ textAlign: 'center' }}>Week</Text>
                   {
                     active === 'week' ?
