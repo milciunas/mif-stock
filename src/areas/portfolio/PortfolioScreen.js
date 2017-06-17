@@ -7,25 +7,29 @@ import {
   View,
   ListView,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  RefreshControl
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import SearchBar from 'react-native-searchbar';
-import EStyleSheet from 'react-native-extended-stylesheet';
 
-import { LoadingScreen } from '../common';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import Colors from '../../constants/Colors';
 
 const { width } = Dimensions.get('window');
+
+function _symWrap(symbol) {
+  return `%22${symbol}%22`;
+}
 
 export default class PortfolioScreenPure extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchResults: [],
-      searchOn: false,
       portfolio: [],
-      test: []
+      searchOn: false,
+      refreshing: false
     };
 
     this.dataSource = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 });
@@ -56,6 +60,45 @@ export default class PortfolioScreenPure extends Component {
     }
   }
 
+  async fetchYahooRefresh(portfolio) {
+    const portfolioState = [];
+    try {
+      const symbolsToFetch = [];
+      for (let i = 0; i < portfolio.length; i++) {
+        symbolsToFetch.push(_symWrap(portfolio[i].symbol));
+      }
+      console.log('Symbols to fetch', symbolsToFetch);
+      const response = await fetch(`https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(${symbolsToFetch})&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`);
+      const responseJson = await response.json();
+      const refreshedPortfolio = responseJson.query.results.quote;
+      if (responseJson.query.results) {
+        if (responseJson.query.results.quote.length > 1) {
+          refreshedPortfolio.forEach(function (element) {
+            this._deleteItem(element.symbol);
+
+            portfolioState.push(element);
+            this.setState({ portfolio: portfolioState });
+          }, this);
+
+          AsyncStorage.setItem('portfolio', JSON.stringify(portfolioState))
+            .then(json => console.log('success storing to async storage!'))
+            .catch(error => console.log('error storing to async storage!'));
+        } else {
+          this._deleteItem(refreshedPortfolio.symbol);
+
+          portfolioState.push(refreshedPortfolio);
+          this.setState({ portfolio: portfolioState });
+
+          AsyncStorage.setItem('portfolio', JSON.stringify(portfolioState))
+            .then(json => console.log('success storing to async storage!'))
+            .catch(error => console.log('error storing to async storage!'));
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async fetchYahooSingle(ticker) {
     try {
       const response = await fetch(`https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22${ticker}%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`);
@@ -77,7 +120,6 @@ export default class PortfolioScreenPure extends Component {
           if (!isFound) {
             portfolioState.push(responseJson.query.results.quote);
             this.setState({ portfolio: portfolioState });
-            this.setState({ test: responseJson.query.results.quote });
 
             AsyncStorage.setItem('portfolio', JSON.stringify(portfolioState))
               .then(json => console.log('success storing to async storage!'))
@@ -188,6 +230,15 @@ export default class PortfolioScreenPure extends Component {
     );
   }
 
+  _onRefresh() {
+    this.setState({ refreshing: true });
+    this.fetchYahooRefresh(this.state.portfolio).then(() => {
+      this.setState({
+        refreshing: false
+      });
+    });
+  }
+
   render() {
     const searchResults = this.state.searchResults;
     const portfolio = this.state.portfolio;
@@ -250,6 +301,11 @@ export default class PortfolioScreenPure extends Component {
               <ListView
                 dataSource={this.dataPortfolio.cloneWithRows(portfolio)}
                 renderRow={(rowData) => this._renderRowPortfolio(rowData)}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={this.state.refreshing}
+                    onRefresh={() => this._onRefresh(this)} />
+                }
               />
           }
         </View>

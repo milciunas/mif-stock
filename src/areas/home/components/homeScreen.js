@@ -33,17 +33,6 @@ export default class HomeScreenPure extends Component {
 
   componentDidMount() {
     this.props.fetchYahooFinance();
-    this.fetchSingleStocks('');
-  }
-
-  async fetchSingleStocks(ticker) {
-    try {
-      const response = await fetch(`http://d.yimg.com/aq/autoc?query=${ticker}&region=US&lang=en-US`);
-      const responseJson = await response.json();
-      this.setState({ searchResults: responseJson.ResultSet.Result });
-    } catch (error) {
-      console.error(error);
-    }
   }
 
   MapStocks(data) {
