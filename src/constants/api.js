@@ -31,18 +31,12 @@ const companies = [
   _symWrap('AAPL'),
   _symWrap('MSFT'),
   _symWrap('GOOGL'),
-  _symWrap('BCS'),
   _symWrap('ORCL'),
   _symWrap('EBAY'),
-  _symWrap('HMC'),
-  _symWrap('LYG'),
-  _symWrap('BABA'),
   _symWrap('NVDA'),
-  _symWrap('DRWI'),
   _symWrap('USO'),
   _symWrap('BAC'),
-  _symWrap('CSCO'),
-  _symWrap('NOK')
+  _symWrap('CSCO')
 ];
 
 function _mapCompanies(data) {
