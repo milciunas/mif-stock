@@ -9,3 +9,8 @@ Posistëmë: https://github.com/Friggid/mif-stock-backend
 3. "doc/Skaidres(latex)/" kataloge yra skaidrës remiantis latex ðablonu.
 4. "bin/" supakuotas ./src/ turinys á .apk failà, kuris naudojamas diegimui Android árenginiuose.
 5. "src/" kataloge yra saugomas vartotojo sàsajos iðeities kodas.
+6. Darbo kompiliavimui reikalingos priemonës: 
+	1) https://expo.io/tools
+		Atsidarius priemonæ spausti Open Project ir projektui susikompiliavus spausti Open on device.
+	2) https://www.genymotion.com/
+		Bûtina ájungti genymotion emuliatoriø, kad projektas bûtø atidarytas já sukompiliavus ir paspaudus open on device.
