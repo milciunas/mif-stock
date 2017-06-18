@@ -6,6 +6,7 @@ import Colors from '../../constants/Colors';
 export default class HomeScreenPure extends Component {
   render() {
     const data = this.props.data;
+    console.log(data);
     const conf = {
       chart: {
         type: 'line',
@@ -27,7 +28,7 @@ export default class HomeScreenPure extends Component {
         }())
       },
       legend: {
-        enabled: false
+        enabled: true
       },
       exporting: {
         enabled: false
@@ -40,14 +41,28 @@ export default class HomeScreenPure extends Component {
       },
       series: [{
         color: Colors.platinumColor,
-        name: 'AAPL',
         tooltip: {
           valueDecimals: 2
         },
+        name: 'High',
         data: (function () {
           const prices = [];
           data.forEach((element) => {
-            prices.push([element.open]);
+            prices.push([element.high]);
+          }, this);
+          return prices;
+        }())
+      },
+      {
+        color: 'red',
+        tooltip: {
+          valueDecimals: 2
+        },
+        name: 'Close',
+        data: (function () {
+          const prices = [];
+          data.forEach((element) => {
+            prices.push([element.close]);
           }, this);
           return prices;
         }())

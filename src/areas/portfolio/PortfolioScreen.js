@@ -67,15 +67,13 @@ export default class PortfolioScreenPure extends Component {
       for (let i = 0; i < portfolio.length; i++) {
         symbolsToFetch.push(_symWrap(portfolio[i].symbol));
       }
-      console.log('Symbols to fetch', symbolsToFetch);
       const response = await fetch(`https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(${symbolsToFetch})&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`);
       const responseJson = await response.json();
       const refreshedPortfolio = responseJson.query.results.quote;
       if (responseJson.query.results) {
         if (responseJson.query.results.quote.length > 1) {
+          AsyncStorage.removeItem('portfolio', (err) => console.log('removed', err));
           refreshedPortfolio.forEach(function (element) {
-            this._deleteItem(element.symbol);
-
             portfolioState.push(element);
             this.setState({ portfolio: portfolioState });
           }, this);
@@ -106,18 +104,14 @@ export default class PortfolioScreenPure extends Component {
       const portfolioState = this.state.portfolio;
       if (responseJson.query.results) {
         if (responseJson.query.results.quote.Ask && responseJson.query.results.quote.Open) {
-          let isFound = false;
+          const isFound = [];
           for (let i = 0; i < this.state.portfolio.length; i++) {
-            if (this.state.portfolio[i].Symbol === responseJson.query.results.quote.Symbol) {
-              isFound = true;
-            } else {
-              isFound = false;
+            if (this.state.portfolio[i].Symbol === responseJson.query.results.quote.symbol) {
+              isFound.push(responseJson.query.results.quote.symbol);
             }
           }
 
-          console.log(isFound);
-
-          if (!isFound) {
+          if (isFound.length === 0) {
             portfolioState.push(responseJson.query.results.quote);
             this.setState({ portfolio: portfolioState });
 
@@ -133,6 +127,14 @@ export default class PortfolioScreenPure extends Component {
               ]
             );
           }
+        } else {
+          Alert.alert(
+              'Attention!',
+              'Stock can\'t be found in Yahoo Finance',
+            [
+                { text: 'Dismiss', onPress: () => {} }
+            ]
+            );
         }
       }
     } catch (error) {

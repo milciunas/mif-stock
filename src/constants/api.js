@@ -36,7 +36,8 @@ const companies = [
   _symWrap('NVDA'),
   _symWrap('USO'),
   _symWrap('BAC'),
-  _symWrap('CSCO')
+  _symWrap('CSCO'),
+  _symWrap('TEL1L.VS')
 ];
 
 function _mapCompanies(data) {
@@ -95,7 +96,6 @@ export const fetchHictoricalData = (ticker, startDate, endDate) =>
     });
 
 const currencyRateUrl = 'http://www.bankofcanada.ca/valet/observations/group/FX_RATES_DAILY';
-
 export function fetchRates(callback) {
   return fetch(currencyRateUrl)
     .then((response) => response.json())

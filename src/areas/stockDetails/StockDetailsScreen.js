@@ -31,7 +31,13 @@ class StockDetailsScreen extends Component {
   componentDidMount() {
     const { params: stock } = this.props.navigation.state;
 
-    this.props.fetchHistoricalData(stock.symbol, weekFromToday, todayDate);
+    active === 'week'
+    ? this.props.fetchHistoricalData(stock.symbol, weekFromToday, todayDate)
+    : active === 'month'
+      ? this.props.fetchHistoricalData(stock.symbol, monthFromToday, todayDate)
+      : active === 'threeMonths'
+        ? this.props.fetchHistoricalData(stock.symbol, threeMonthsFromToday, todayDate)
+        : this.props.fetchHistoricalData(stock.symbol, yearFromToday, todayDate);
   }
 
   MapHistoricalData(data) {

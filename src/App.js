@@ -1,6 +1,5 @@
 import Expo, { AppLoading } from 'expo';
 import React from 'react';
-import Moment from 'moment';
 import { AsyncStorage, UIManager, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';

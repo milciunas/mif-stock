@@ -95,6 +95,9 @@
  \def\keyWordDefinition{\iftoggle{inLithuanian}{apibrėžimas}{Definition}}
  \def\keyWordExample{\iftoggle{inLithuanian}{pavyzdys}{Example}}
 
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
 \newcommand{\bothabstracts}[3]{
 \setcounter{secnumdepth}{0}
 \newpage
@@ -104,6 +107,7 @@
 #1
 \newpage
 \hspace{2cm}
+%\sectionWithoutNumber{arg1}{arg2}
 {\centering \section{\keywordAbstractOther}}
 
 \begin{center}{\textbf{#2} }\end{center}
