@@ -9,7 +9,8 @@
 \usepackage{subcaption}
 \usepackage{listings}
 \captionsetup{font=small,labelfont=it,textfont=it}
-\lstset{numbers=left, numberstyle=\tiny, stepnumber=1, language=Java, captionpos=b, frame=single, aboveskip=20pt,belowskip=20pt }
+%captionpos=b
+\lstset{numbers=left, numberstyle=\tiny, stepnumber=1, language=Java, frame=single, aboveskip=20pt,belowskip=20pt }
 
 \newtoggle{inLithuanian}
  %If the report is in Lithuanian, it is set to true; otherwise, change to false
@@ -48,15 +49,17 @@
  %the main part
 \newpage
 \section{Panašių sistemų analizė}
-Prieš sistemos kūrimą svarbu surasti ir išanalizuoti panašias programėles, kurios padėtų susidaryti dizaino, bei funkcionalumo įvaizdį. Pirmoji pasirinkta programėlė -
-\href{https://play.google.com/store/apps/details?id=co.peeksoft.stocks}{„My Stocks Portfolio and Widget“}.  Antroji pasirinkta programėlė - \href{https://play.google.com/store/apps/details?id=org.dayup.stocks}{„Stocks - Realtime Stock Quotes“}. Abi aplikacijos yra skirtos akcijų rinkos stebėjimui, tad analizuodamas jas susidarysiu įspūdį, kaip turėtų būti tinkamai suformuluotas mano aplikacijos dizainas ir funkcionalumas.
+Prieš sistemos kūrimą svarbu surasti ir išanalizuoti panašias programėles, kurios padėtų susidaryti dizaino bei funkcionalumo įvaizdį. Pirmoji pasirinkta programėlė -
+\href{https://play.google.com/store/apps/details?id=co.peeksoft.stocks}{\textit{„My Stocks Portfolio and Widget“}}.  Antroji pasirinkta programėlė - \href{https://play.google.com/store/apps/details?id=org.dayup.stocks}{\textit{„Stocks - Realtime Stock Quotes“}}. Abi aplikacijos yra skirtos akcijų rinkos stebėjimui, tad analizuodamas jas sudarysiu savo programėlės dizainą ir funkcionalumų įgyvendinimą.
 \subsection{„My Stocks Portfolio and Widget“ analizė}
 Ši programėlė (priedas A) skelbia naujienas iš akcijų rinkos ir leidžia vartotojui rankiniu būdu pridėti norimas stebėti akcijas. Bendras aplikacijos apipavidalinimas labai paprastas, tačiau informatyvus. Informacijos pagrindiniame lange nėra daug, tačiau paspaudus ant pasirinktos akcijos atvaizduojama visa reikalinga informacija kartu su istoriniais akcijos kainų kitimo grafikais (priedas B). Programėlė neturi automatinio akcijų atnaujinimo, reikia paspausti mygtuką, kad tai būtų įvykdyta. Taip pat yra galimybė nusipirkti akcijų ir matyti, ar uždirbama ar pinigai yra prarandami. Suteikiama galimybė kurti skirtingus akcijų portfelius, kur galima pridėti skirtingas grupes akcijų paketų ir juos taip grupuoti.
 \subsection{„Stocks - Realtime Stock Quotes“ analizė}
 Ši programėlė (priedas C) turi kelis skirtingus funkcionalumus.
-Informacijos atnaujinimas vyksta realiu metu, kai yra atidarytos akcijų rinkos. Pirmą kartą įjungus programėlę atvaizduojamas langas su daugybe skirtingų akcijų rinkų ir akcijų paketų. Yra atvaizduojama daug informacijos pagrindiniame lange ir yra sunku suprasti kokią informaciją skaičiai pristato. Paspaudus ant konkrečios akcijos susidūriau su dar didesniu informacijos kiekiu kartu su istoriniais kainų kitimo grafikais, naujienomis apie konkrečią akciją, jos detalią apžvalgą ir financiniais duomenimis. Ši aplikacija pasižymi labai dideliu ir konkrečiu kiekiu apie kiekvieną konkrečią akciją, tačiau nėra labai intuityvi ir sukelia informacijos pertekliaus jausmą. Šioje aplikacijoje galima susikurti savo portfelius ir pirkti akcijas. Tam, kad galima būtų pirkti akcijas privaloma prisijungti prie sistemos naudojant savo realius duomenis.
+Informacijos atnaujinimas vyksta realiu metu, kai yra atidarytos akcijų rinkos. Pirmą kartą įjungus programėlę atvaizduojamas langas su daugybe skirtingų akcijų rinkų ir akcijų paketų. Yra atvaizduojama daug informacijos pagrindiniame lange ir yra sunku suprasti kokią informaciją skaičiai pristato. Paspaudus ant konkrečios akcijos atvaizduojamas langas su dar didesniu informacijos kiekiu kartu su istoriniais kainų kitimo grafikais, naujienomis apie konkrečią akciją, jos detalią apžvalgą ir finansiniais duomenimis. Ši aplikacija pasižymi dideliu ir konkrečiu duomenų kiekiu apie kiekvieną konkrečią akciją, tačiau nėra labai paprasta naudoti ir sukelia informacijos pertekliaus jausmą. Šioje aplikacijoje galima susikurti savo portfelius ir pirkti akcijas. Tam, kad būtų galima pirkti akcijas, privaloma prisijungti prie sistemos naudojant savo realius duomenis.
 \subsection{Analizės išvados}
 \begin{table}[!ht]\centering
+	\caption{Panašių programėlių analizė}
+	\label{tabl:isvadu-lentele}
 	\begin{tabular}{|l|c|c|ll}
 		\cline{1-3}
 		\textbf{Funckionalumas} & \textbf{\href{https://play.google.com/store/apps/details?id=co.peeksoft.stocks}{„My Stocks Portfolio and Widget“}} & \textbf{\href{https://play.google.com/store/apps/details?id=org.dayup.stocks}{„Stocks - Realtime Stock Quotes“}} &  \\ \cline{1-3}
@@ -66,10 +69,8 @@ Informacijos atnaujinimas vyksta realiu metu, kai yra atidarytos akcijų rinkos.
 		Akcijų naujinimas&-&+& \\ \cline{1-3}
 		Akcijų pirkimas&+&+& \\ \cline{1-3}
 	\end{tabular}
-	\caption{Panašių programėlių analizė}
-	\label{tabl:isvadu-lentele}
 \end{table}
-Lentelėje \ref{tabl:isvadu-lentele} pavaizduoti abiejų nagrinėtų aplikacijų privalumai ir trūkumai. Aplikacija „My Stocks Portfolio and Widget“ neturėjo prisijungimo galimybės, nebuvo galimas stebėti iš anksto sukurtų akcijų rinkų, bei nebuvo automatinio akcijų atnaujinimo vos joms pasikeitus. Aplikacijoje „Stocks - Realtime Stock Quotes“ visi funkcionalumai įgyvendinti puikiai, tačiau pateikta informacija yra nepaaiškinta ir vartotojui, kuris sistemą mato pirmą kartą būtų sunku suprasti kas yra pavaizduota tam tikruose languose. Abi aplikacijos taikė vartotojo aplanko kūrimą, kuriame galima pridėti norimas akcijas pasinaudojus paieška.
+Lentelėje nr. {tabl:isvadu-lentele} pavaizduoti abiejų nagrinėtų aplikacijų privalumai ir trūkumai. Aplikacija \textit{„My Stocks Portfolio and Widget“} neturėjo prisijungimo galimybės, nebuvo galimas stebėti iš anksto sukurtų akcijų rinkų bei nebuvo automatinio akcijų atnaujinimo vos joms pasikeitus. Aplikacijoje \textit{„Stocks - Realtime Stock Quotes“} visi funkcionalumai įgyvendinti puikiai, tačiau pateikta informacija yra nepaaiškinta. Vartotojui, kuris sistemą naudoja pirmą kartą būtų sunku suprasti, kas yra pavaizduota tam tikruose languose. Abi aplikacijos taikė vartotojo aplanko kūrimą, kuriame galima pridėti norimas akcijas pasinaudojus paieška.
  
 \newpage
 \section{Teorinis sistemos modelis}
@@ -96,7 +97,7 @@ Nefunkciniai reikalavimai:
 	\label{fig:sas1}
 \end{figure}
 
-Paveikslėlyje \ref{fig:sas1} yra pavaizduotas akcijų kainų ir vartotojo aplanko modelis, kuris yra suskirstytas į skirtingas dalis, kurios atstoja skirtingą funkcionalumą. Kairiajame paveikslėlyje yra atvaizduojamos akcijos, kurias įvedžiau pats, ir naujų akcijų pridėti į sarašą yra neleidžiama. 1 - laukas yra skirtas lango pavadinimui ir sąrašo atnaujinimo funkcionalumui. 2 - sąrašo laukas skirtas sutrumpintiems akcijoms duomenims saugoti. Dešiniajame paveikslėlyje yra atvaizduojamas vartotojo aplankas į kurį vartotojas gali pridėti naujų akcijų. 6 - laukas skirtas lango pavadinimui, bei naujų akcijų pridėjimui į vartotojo akcijų sąrašą.7 - vartotojo akcijų sąrašo laukas, kuris atvaizduoja sutrumpintus akcijos duomenis. 3 - naršymo juostos liečiamas laukas, skirtas pereiti į iš anksto nustatytų akcijų sarašą. 4 - naršymo juostos liečiamas laukas skirtas pereiti į vartotojo akcijų aplanko langą. 5 - naršymo juostos liečiamas laukas skirtas pereiti į valiutų keitimo langą.
+Paveikslėlyje nr. \ref{fig:sas1} yra pavaizduotas akcijų kainų ir vartotojo aplanko modelis, kuris yra suskirstytas į skirtingas dalis, kurios atstoja skirtingą funkcionalumą. Kairiajame paveikslėlyje yra atvaizduojamos akcijos, kurių adresai yra įkoduoti į programėlės atmintį ir naujų akcijų pridėjimas į sarašą yra neleidžiamas. 1 - laukas yra skirtas lango pavadinimui ir sąrašo atnaujinimo funkcionalumui. 2 - sąrašo laukas skirtas sutrumpintiems akcijoms duomenims saugoti. Dešiniajame paveikslėlyje yra atvaizduojamas vartotojo aplankas į kurį vartotojas gali pridėti naujų akcijų. 6 - laukas skirtas lango pavadinimui bei naujų akcijų pridėjimui į vartotojo akcijų sąrašą. 7 - vartotojo akcijų sąrašo laukas, kuris atvaizduoja sutrumpintus akcijos duomenis. 3 - naršymo juostos liečiamas laukas, skirtas pereiti į iš anksto nustatytų akcijų sarašą. 4 - naršymo juostos liečiamas laukas skirtas pereiti į vartotojo akcijų aplanko langą. 5 - naršymo juostos liečiamas laukas skirtas pereiti į valiutų keitimo langą.
 
 \newpage
 \begin{figure}[h]
@@ -105,23 +106,23 @@ Paveikslėlyje \ref{fig:sas1} yra pavaizduotas akcijų kainų ir vartotojo aplan
 	\caption{Akcijų kainų ir vartotojo aplanko atvaizdavimas}
 	\label{fig:sas2}
 \end{figure}
-Paveikslėlyje \ref{fig:sas2} kairėje yra pavaizduotas detalusis akcijos langas, į kurį patenkama paspaudus ant akcijos, o dešinėje pavaizduotas valiutos keitimo langas. Kairiajame paveikslėlyje 1 - lango pavadinimas ir grįžimas į bendrą akcijos peržiūros langą arba vartotojo aplanką priklausomai nuo to iš kur buvo įvykdyta naršymo komanda. 2 - valdymo juosta, kuri nurodo kuriam laikotarpiui atvaizduoti akcijos istorinį grafiką. 3 - akcijos istorinis grafikas, kuris atvaizduoja pasirinkto dienų laikotarpio akcijos kainas. 4 - pasirinktos akcijos detalesnių duomenų sąrašas. Dešiniajame paveikslėlyje 5 - valiutos keitimo lango pavadinimas. 6 - valiutos įvesties ir išvesties laukai. 7 - valiutos pasirinkimo langai, kurie atidaro nauja langą su valiutų pasirinkimais.
+Paveikslėlyje nr. \ref{fig:sas2} kairėje yra pavaizduotas detalusis akcijos langas, į kurį patenkama paspaudus ant akcijos, o dešinėje pavaizduotas valiutos keitimo langas. Kairiajame paveikslėlyje 1 - lango pavadinimas ir grįžimas į bendrą akcijos peržiūros langą arba vartotojo aplanką priklausomai nuo to iš kur buvo įvykdyta naršymo komanda. 2 - valdymo juosta, kuri nurodo kuriam laikotarpiui atvaizduoti akcijos istorinį grafiką. 3 - akcijos istorinis grafikas, kuris atvaizduoja pasirinkto dienų laikotarpio akcijos kainas. 4 - pasirinktos akcijos detalesnių duomenų sąrašas. Dešiniajame paveikslėlyje 5 - valiutos keitimo lango pavadinimas. 6 - valiutos įvesties ir išvesties laukai. 7 - valiutos pasirinkimo langai, kurie atidaro naują langą su valiutų pasirinkimais.
 
 \newpage
 \section{Praktinis programėlės įgyvendinimas}
-Norint įgyvendinti mobilią akcijų stebėjimo sistemą man pirmiausia reikėjo išsiaiškinti, kur galiu gauti nemokamus ir patikimus akcijų duomenis.
+Norint įgyvendinti mobilią akcijų stebėjimo sistemą pirmiausia reikėjo išanalizuoti, kur galiu gauti nemokamus ir patikimus akcijų duomenis. Taip pat reikėjo išsiaiškinti tinkamiausias technologijas, kurios padėtų įgyvendinti sistemą.
 \subsection{Technologijų pasirinkimas}
-Programėlei realizuoti pasirinkau „Facebook“ įmonės sukurtą „JavaScript“ programavimo kalbos „React Native“ biblioteką. Programos paleidimui, kompiliavimui ir versijavimui pasirinkau nepriklausomų programuotojų sukurtą nemokamą produktą „Expo SDK“. Savo programėlę testavau nemokama „Android“ modeliavimo programa – „Genymotion“. Naršymą programėlės viduje įgyvendinau pasitelkdamas „React Navigation“ įrankį. Įvairių komponentų dalių ir būsenų išsaugojimą ir pernešimą programėlės viduje įgyvendinti pasitelkiau „Redux“ įrankį.
+Programėlei realizuoti buvo pasirinkta „Facebook“ įmonės sukurta „JavaScript“ programavimo kalbos „React Native“ biblioteka. Programos paleidimui, kompiliavimui ir versijavimui buvo pasirinktas nepriklausomų programuotojų sukurtas nemokamas programėlių kūrimo paketas „Expo SDK“. Programėlė buvo testuojama nemokama „Android“ modeliavimo programa – „Genymotion“. Naršymas programėlės viduje buvo įgyvendintas pasitelkiant „React Navigation“ įrankį. Įvairių komponentų dalių ir būsenų išsaugojimą ir pernešimą programėlės viduje realizuoti pasirinktas „Redux“ įrankis.
 \subsubsection{„Expo SDK“ platforma}
-Kuriant šią programėlę, man buvo labai svarbu kuo labiau supaprastinti programėlės kompiliavimo ir versijavimo procesą. Tam, kad nereikėtų nuolatos keisti kompiliavimo ir programėlės sudarymo proceso rankiniu būdu pasirinkau „Expo SDK“, kaip platformą savo programėlei. Ši platformą labai palengviną programėlės kompiliavimo ir kūrimo procesą automatiškai konfigūruodama kompiliavimą kiekvieną kartą pakeitus programinį kodą. Programuojant šioje platformoje man tapo prieinamas būdas naudoti „React Native“ biblioteką ir visą programą parašyti „JavaScript“ kalba be jokių sudėtingų kompiliatoriaus konfigūracijų. Ši platforma tapo labai naudinga tuo, kad ją įrašius iškarto galima naudotis daugybe integruotų bibliotekų, tokių, kaip pastarasis „React Native“, įvairios dizaino ir funkcionalumo bibliotekos. Taip pat ši platforma labai patogi darbui su "Android" sistema dėl integruotų įrankių, kurie leidžia kompiliutą kodą iškart atvaizduoti mobilioje sistemoje ir atnaujinti vos atnaujinus programinio kodo dalį.
+Kuriant šią programėlę, buvo skirtas itin didelis dėmesys siekiant kuo labiau supaprastinti programėlės kompiliavimo ir versijavimo procesą. Tam, kad nereikėtų nuolatos keisti kompiliavimo ir programėlės sudarymo procesų rankiniu būdu, buvo pasirinkta „Expo SDK“ kaip platformą savo programėlei. Ši platforma labai palengvina programėlės kompiliavimo ir kūrimo procesą automatiškai konfigūruodama kompiliavimą kiekvieną kartą pakeitus programinį kodą. Programuojant šioje platformoje tapo prieinamas būdas naudoti „React Native“ biblioteką ir visą programą parašyti „JavaScript“ kalba be jokių sudėtingų kompiliatoriaus konfigūracijų. Ši platforma tapo labai naudinga tuo, kad ją įrašius iš karto galima naudotis daugybe integruotų bibliotekų, tokių, kaip minėtasis „React Native“, įvairios dizaino ir funkcionalumo bibliotekos. Taip pat ši platforma labai patogi darbui su „Android“ sistema dėl integruotų įrankių, kurie leidžia kompiliuotą kodą iškart atvaizduoti mobilioje sistemoje ir atnaujinti vos atnaujinus programinio kodo dalį. Taip pat ši platforma įtraukia visus tėvinius prietaiso funkcionalumus, kaip kameros, mikrofono, jutiklių valdymas.
 \subsubsection{„React Native ir Redux“}
-Funkcionalumui įgyvendinti pasirinkau „React Native“ programavimo kalbą. Ši programavimo kalba yra paremta savaisiais(ang. Native) mobiliųjų įrenginių programiniais kodais ir subendrina programavimą kelioms skirtingoms platformoms iš karto. Ši programavimo kalba yra sukurta, kaip „JavaScript“ kalbos biblioteka. Kadangi mano programėlėje yra būtinas bendravimas tarp skirtingų komponentų ir informacijos dalijimasis nusprendžiau tai įgyvendinti naudodamasis „Redux“ biblioteka. Ši biblioteka leidžia lengvai valdyti aplikacijos atmintyje laikomas savybes ir komponentų parametrus ir juos perduoti kitiems komponentas esantiems ne būtinai tame pačiame lygmenyje ar tame pačiame navigacijos lygyje.
+Funkcionalumui įgyvendinti buvo pasirinkta „React Native“ programavimo kalbą. Ši programavimo kalba yra paremta savaisiais (ang. native) mobiliųjų įrenginių programiniais kodais ir subendrina programavimą kelioms skirtingoms platformoms iš karto. Ši programavimo kalba yra sukurta kaip „JavaScript“ kalbos biblioteka. Kadangi šioje programėlėje yra būtinas bendravimas tarp skirtingų komponentų ir informacijos dalijimasis, buvo nuspręsta tai įgyvendinti naudojantis „Redux“ biblioteka. Ši biblioteka leidžia lengvai valdyti aplikacijos atmintyje laikomas savybes, komponentų parametrus ir juos perduoti kitiems komponentams, esantiems nebūtinai tame pačiame lygmenyje ar tame pačiame navigacijos lygyje.
 \subsubsection{„Genymotion“}
-Programėlės testavimui pasirinkau nemokamą modeliavimo įrankio „Genymotion“ versiją. Šis įrankis leidžia sukompiliuotą kodą atvaizduoti sumodeliuotame „Android“ įrenginyje kaskart atnaujinus programinį kodą. Taip smarkiai padidinamas programavimo darbo našumas, nes testavimas gali vykti ypatingai greitai ir nėra būtinybės programėlės testuoti tikrame įrenginyje.
+Programėlės testavimui buvo pasirinkta nemokama modeliavimo įrankio „Genymotion“ versiją. Šis įrankis leidžia sukompiliuotą kodą atvaizduoti sumodeliuotame „Android“ įrenginyje kiekvieną kartą atnaujinus programinį kodą. Taip smarkiai padidinamas programavimo darbo našumas, nes testavimas gali vykti ypatingai greitai ir nėra būtinybės programėlės testuoti tikrame įrenginyje.
 \subsection{Išorinių duomenų šaltinių pasirinkimas}
-Pasirinkau apjungti kelis skirtingus duomenų šaltinius, nes visi suteikė skirtingo funkcionalumo. „Yahoo Stocks API“ naudojau pagrindinių akcijų duomenų gavimui. Ši paslaugų tiekimo tarnyba ją kviečiant su norimu akcijos simboliu grąžina sąrašą duomenų apie pasirinktą akciją. Istoriniams akcijų pakitimų grafikams atvaizduoti naudojau „Quandl“ servisą, kuris grąžiną akcijų kainas pasirinktam laikotarpiui. Gautiems istoriniams kainų pakitimų grafikams atvaizduoti naudojausi išorine paslauga „HighCharts“. Ši paslauga leidžia atvaizduoti norimus duomenis pasirinktais grafikais, kurie pasirenkami siunčiant sukurtą konfigūraciją į išorinį paslaugų tiekėją.
+Buvo nuspręsta apjungti kelis skirtingus duomenų šaltinius, nes visi suteikė skirtingo funkcionalumo. „Yahoo Stocks API“ buvo naudojama pagrindinių akcijų duomenų gavimui. Ši paslaugų tiekimo tarnyba, ją kviečiant su norimu akcijos simboliu, grąžina sąrašą duomenų apie pasirinktą akciją. Istoriniams akcijų pakitimų grafikams atvaizduoti buvo naudojamas „Quandl“ servisas, kuris grąžiną akcijų kainas pasirinktam laikotarpiui. Gautiems istoriniams kainų pakitimų grafikams atvaizduoti buvo naudojamasi išorine paslauga „HighCharts“. Ši paslauga leidžia atvaizduoti norimus duomenis pasirinktais grafikais, kurie pasirenkami siunčiant sukurtą konfigūraciją į išorinį paslaugų tiekėją.
 \subsection{Sistemos struktūra}
-Kuriant mobilią aplikaciją su „React Native“ ir „Redux“ technologijomis yra labai svarbu tinkamai struktūrizuoti projektą. Toliau pateiksiu mano sistemos struktūros pseudokoda:
+Kuriant mobilią aplikaciją su „React Native“ ir „Redux“ technologijomis yra labai svarbu tinkamai struktūrizuoti projektą. Žemiau yra pateikiamas mano sistemos struktūros pseudokodas:
 \begin{itemize}[noitemsep]
 \item komponentai
 	\begin{itemize}[noitemsep]
@@ -142,13 +143,13 @@ Kuriant mobilią aplikaciją su „React Native“ ir „Redux“ technologijomi
 \item aplikacijos-pradžios-failas
 \end{itemize}
 
-Programai pradėjus darbą pirmiausia yra kreipiamasi į failą \textit{aplikacijos-pradžios-failas} kuris yra tėvinis projekto failas. Šis failas sukuria programoje naudojamus komponentus ir užregistruoja pradinę aplikacijos būseną, kuri vėliau yra naudojama saugoti parametrams, kurie yra perduodami skirtingose aplikacijos vietose esantiems komponentams. Pradinis sistemos būsenos registravimas vyksta aplanke \textit{redux/store.js}, o atskirų komponentų būsenos surenkamos \textit{redux/reducers.js}. Tuomet yra kreipiamasi į aplanką \textit{naršymo-maršrutai/}, kuris nusako, koks turi būti pirmasis komponentas, kurį sistema priima ir atvaizduoja vartotojui. Pirmasis komponentas kurį įkelia mano sistema yra failas \textit{komponentai/namų}. Tam, kad šis komponentas galėtų atvaizduoti mano norimą informaciją, buvo privaloma gauti pradinius naršymo maršrutų, programos būsenos ir išorinių servisų duomenis. Galiausiai namų komponente yra kviečiami išoriniai servisais iš ansčiau nurodyto failo ir viskas yra saugoma programos globalioje būsenoje.
+Programai pradėjus darbą pirmiausia yra kreipiamasi į failą \textit{aplikacijos-pradžios-failas} kuris yra tėvinis projekto failas. Šis failas sukuria programoje naudojamus komponentus ir užregistruoja pradinę aplikacijos būseną, kuri vėliau yra naudojama saugoti parametrams, kurie yra perduodami skirtingose aplikacijos vietose esantiems komponentams. Pradinis sistemos būsenos registravimas vyksta aplanke \textit{redux/store.js}, o atskirų komponentų būsenos surenkamos \textit{redux/reducers.js}. Tuomet yra kreipiamasi į aplanką \textit{naršymo-maršrutai/}, kuris nusako, koks turi būti pirmasis komponentas, kurį sistema priima ir atvaizduoja vartotojui. Pirmasis komponentas kuris įkeliamas šioje sistemoje yra \textit{komponentai/namų} komponentas. Tam, kad šis komponentas galėtų atvaizduoti norimą informaciją, buvo privaloma gauti pradinius naršymo maršrutų, programos būsenos ir išorinių servisų duomenis. Galiausiai namų komponente yra kviečiami išoriniai servisais iš ansčiau nurodyto failo ir viskas yra saugoma programėlės globalioje būsenoje.
 
 \newpage
 \section{Pagrindinio funkcionalumo įgyvendinimas}
-Programėlės funkcionalumas susideda iš daugelio nedidelių funkcinių modulių, kurie yra paskirti atlikti tam tikrą veiksmų seką ir daugeliu atvejų grąžinti vienokį ar kitokį rezultatą. Funkcionalumai susiję su akcijų gavimu ir apipavidalinimu yra kuriami taikant teorines žinias perskaičius ~\cite{IGR} ir ~\cite{JOA} šaltinius, bei išanalizavus panašias programėles. Šiame skyriuje detaliau aptarsiu pagrindinius funkcionalumus ir kaip juos įgyvendinau.
+Programėlės funkcionalumas susideda iš daugelio nedidelių funkcinių modulių, kurie yra paskirti atlikti tam tikrą veiksmų seką ir daugeliu atvejų grąžinti vienokį ar kitokį rezultatą. Funkcionalumai susiję su akcijų gavimu ir apipavidalinimu yra kuriami taikant teorines žinias perskaičius ~\cite{IGR} ir ~\cite{JOA} šaltinius bei išanalizavus panašias programėles. Šiame skyriuje bus detaliau aptariami pagrindiniai funkcionalumai ir jų įgyvendinimas.
 \subsection{Vartotojo akcijų aplanko kūrimas}
-Vienas pagrindinių programėlės funkcionalumų yra vartotojo akcijų aplanko kūrimas (pavaizduota priede E). Šis funkcionalumas yra pasiekiamas \textit{/areas/portfolio/PortfolioScreen.js}. Šiame lange yra pateikiamas akcijų sąrašas, kurias vartotojas pridėjo naudodamasis pliuso mygtuką. Paspaudus mygtuką yra atidaroma funkcija \textit{fetchSingleStocks(item)}. Ši funkcija priima vartotojo įvestą raktažodį ir vykdo pseudokodą (pavyzdys išeities kode \ref{code:fetchSingleStocks}). Pavyzdžio antrojoje eilutėje pavaizduotas išorinis paslaugų tiekėjas, kuriam pateikus norimos akcijos trumpinį yra grąžinamas duomenų apie akciją sąrašas. Šis sąrašas tuomet yra trečiojoje eilutėje interpretuojamas kaip objektas. Galiausiai ketvirtojoje eilutėje gautas objektas yra siunčiamas į aplikacijos atmintį(ang. state) ir ten yra išsaugomas vėlesniam panaudojimui.
+Vienas pagrindinių programėlės funkcionalumų yra vartotojo akcijų aplanko kūrimas (pavaizduota priede E). Šis funkcionalumas yra pasiekiamas \textit{/areas/portfolio/PortfolioScreen.js}. Šiame lange yra pateikiamas akcijų sąrašas, kurias vartotojas pridėjo naudodamasis pliuso mygtuką. Paspaudus mygtuką yra atidaroma funkcija \textit{fetchSingleStocks(item)}. Ši funkcija priima vartotojo įvestą raktažodį ir vykdo pseudokodą (pavyzdys išeities kode nr. \ref{code:fetchSingleStocks}). Pavyzdžio antrojoje eilutėje pavaizduotas išorinis paslaugų tiekėjas, kuriam pateikus norimos akcijos trumpinį yra grąžinamas duomenų apie akciją sąrašas. Šis sąrašas tuomet trečiojoje eilutėje yra interpretuojamas kaip objektas. Galiausiai ketvirtojoje eilutėje gautas objektas yra siunčiamas į aplikacijos atmintį (ang. state) ir ten yra išsaugomas vėlesniam panaudojimui.
 \begin{lstlisting}[caption={Funkcijos fetchSingleStocks() pseudokodas.},label={code:fetchSingleStocks}]
 fetchSingleStocks(akcijos-trumpinys) {
   const atsakas = gauti('http://d.yimg.com/aq/autoc?query=${akcijos-trumpinys}&region=US&lang=en-US')
@@ -157,7 +158,7 @@ fetchSingleStocks(akcijos-trumpinys) {
 }
 \end{lstlisting}
 
-Įvykdžius funkciją \textit{fetchSingleStocks(item)} programėlės atmintyje turiu naują akcijos objektą. Tam, kad šį objektą atvaizduočiau pridedu į sarašą naudodamasis „React Native“ komponentu \textit{ListView}. Šis komponentas priima objektą ir perduoda šį objektą į funkciją \textit{renderRow(item)}. Ši funkcija leidžia apdoroti vieną sarašo eilutę su gautais duomenimis ir grąžinti eilutę sąrašui. Tada yra kviečiama funkcija \textit{fetchYahooSingle(pasirinktasSimbolis)}, kuri ieško pasirinkos akcijos „Yahoo Finance“ duomenų bazėje (pavyzdys išeities kode \ref{code:fetchYahooSingle}). Antrojoje eilutėje kviečiamas išorinis servisas, kuris radęs akciją ją grąžina kaip masyvą. Toliau šeštoje eilutėje vykdome tikrinimą ar akcija yra grąžinta ir turi reikiamus duomenis. Jeigu akcija turi reikiamus duomenis aštuntoje eilutėje tikriname ar mūsų aplikacija jau turi tokią akciją savo būsenoje. Jeigu neturi, penkioliktoje eilutėje pridedame akciją į programėlės atmintį. Pats svarbiausias žingsnis yra septynioliktoje eilutėje, čia išsaugome rastą naują akciją į mobilaus prietaiso atmintį. Atlikus septynioliktą žingsnį ir perkrovus aplikaciją, vartotojas portfelio lange rastų išsaugotą akciją.
+Įvykdžius funkciją \textit{fetchSingleStocks(item)} programėlės atmintyje yra sukuriamas naujas akcijos objektas. Tam, kad šis objektas būtų atvaizduojamas, jis yra pridedamas į sarašą naudojantis „React Native“ komponentu \textit{ListView}. Šis komponentas priima objektą ir perduoda šį objektą į funkciją \textit{renderRow(item)}. Ši funkcija leidžia apdoroti vieną sarašo eilutę su gautais duomenimis ir grąžinti eilutę sąrašui. Tada yra kviečiama funkcija \textit{fetchYahooSingle(pasirinktasSimbolis)}, kuri ieško pasirinkos akcijos \textit{„Yahoo Finance“} duomenų bazėje (pavyzdys išeities kode nr. \ref{code:fetchYahooSingle}). Antrojoje eilutėje kviečiamas išorinis servisas, kuris radęs akciją ją grąžina kaip masyvą. Toliau šeštoje eilutėje vykdome tikrinimą ar akcija yra grąžinta ir turi reikiamus duomenis. Jeigu akcija turi reikiamus duomenis aštuntoje eilutėje tikriname ar mūsų aplikacija jau turi tokią akciją savo būsenoje. Jeigu neturi, penkioliktoje eilutėje pridedame akciją į programėlės atmintį. Pats svarbiausias žingsnis yra septynioliktoje eilutėje, čia išsaugome rastą naują akciją į mobilaus prietaiso atmintį. Atlikus septynioliktą žingsnį ir perkrovus aplikaciją, vartotojas portfelio lange rastų išsaugotą akciją.
 
 \newpage
 \begin{lstlisting}[caption={Funkcijos fetchYahooSingle() pseudokodas.}, label={code:fetchYahooSingle}]
@@ -185,10 +186,10 @@ fetchYahooSingle(pasirinktasSimbolis) {
 }
 \end{lstlisting}
 
-Norint atnaujinti vartotojo akcijų portfelio sarašą yra kviečiama funkcija \textit{fetchYahooRefresh(portfelis)}. Ši funkcija kviečia išorinį servisą tiek kartų, kiek yra akcijų vartotojo portfelyje ir gauną atitinkamą kiekį masyvų. Kiekvieną masyvo elementas yra patikrinamas ar yra ne tuščias ir ar yra gauti atitinkami duomenys akcijai sėkmingai atvaizduoti. Jeigu duomenys yra gauti, senasis vartotojo portfelis yra ištrinamas iš programėlės atminties ir iš telefono atminties. Tuomet yra iš naujo išsaugojamas. Taip yra išvengiama pasikartojančių duomenų ir gaunami naujausi akcijų duomenys.
+Norint atnaujinti vartotojo akcijų portfelio sarašą yra kviečiama funkcija \textit{fetchYahooRefresh(portfelis)}. Ši funkcija kviečia išorinį servisą tiek kartų, kiek yra akcijų vartotojo portfelyje ir gauną atitinkamą kiekį masyvų. Kiekvienas masyvo elementas yra patikrinamas ar yra ne tuščias ir ar yra gauti atitinkami duomenys akcijai sėkmingai atvaizduoti. Jeigu duomenys yra gauti, senasis vartotojo portfelis yra ištrinamas iš programėlės atminties ir iš mobilaus prietaiso atminties. Tuomet yra iš naujo išsaugojamas. Taip yra išvengiama pasikartojančių duomenų ir gaunami naujausi akcijų duomenys.
 
 \subsection{Akcijos išplėsto turinio lango kūrimas}
-Kiekviena akcija turi daugiau duomenų negu yra pavaizduota pagrindiniame ar vartotojo portfelio lange. Paspaudus ant vienos iš šių akcijų vartotojas yra nukreipiamas į išplėstą akcijos turinio langą (pavyzdys priede H). Perėjus į šį langą yra kviečiama funkcija \textit{fetchHistoricalData(akcijosSimbolis, dataIki, siandienosData)}. Ši funkcija kviečia išorinį servisą „QUANDL“, kuris pagal pateiktus duomenis: akcijos simbolį, pradžios datą ir pabaigos datą, gražina istorinius akcijos duomenis. Šie duomenys yra tokie, kaip kiekvienos dienos akcijos kaina rinkos atsidarymo, užsidarymo metu. Gauti duomenys yra įrašomi į programėlės atmintį ir yra kviečiamas kitas modalinis langas \textit{ChartScreen}. Šis langas atlieka grafiko atvaizdavimo funkcionalumą su duomenimis gautais iš \textit{fetchHistoricalData} funkcijos. Šiame lange yra sudaroma grafiko konfigūracija, nustatomos ašys: x - datų masyvas, y - didžiausios ir mažiausios kainos masyvai. Tuomet yra kviečiama funkcija \textit{highCharts}, kuri iš išorinio paslaugų tiekėjo gražina istorinį akcijos grafiką. Jeigu grafikas gražintas sėkmingai šiame lange aprašau grafiko aukštį ir plotį ir siunčiu atgal į išplėsto akcijos turinio langą. Grįžus į minėtajį langą yra atvaizduojamas gautas grafikas ir iš pagrindinio arba vartotojo profilio lango gauti išplėsti akcijos duomenys. Taip pat sukūriau grafiko datos imties keitimo funkcionalumą, kuris yra išdėstytas keturiais mygtukais virš grafiko. Kai yra paspaudžiamas vienas iš mygtukų, programėlės atmintyje pasikeičia laikinasis parametras nusakantis aktyvią grafiko datą, ir įvedant naująją vėl yra kreipiamasi į \textit{ChartScreen} langą ir yra atnaujinamas išplėstinis akcijos duomenų langas nauju grafiku. Kadangi yra kviečiami skirtingi duomenų tiekėjai grafikams ir akcijos duomenims atvaizduoti, būna atvejų kai yra negaunami vieni ar kiti duomenys.
+Kiekviena akcija turi daugiau duomenų negu yra pavaizduota pagrindiniame ar vartotojo portfelio lange. Paspaudus ant vienos iš šių akcijų vartotojas yra nukreipiamas į išplėstą akcijos turinio langą (pavyzdys priede H). Perėjus į šį langą yra kviečiama funkcija \textit{fetchHistoricalData(akcijosSimbolis, dataIki, siandienosData)}. Ši funkcija kviečia išorinį servisą \textit{„Quandl“}, kuris pagal pateiktus duomenis: akcijos simbolį, pradžios datą ir pabaigos datą, grąžina istorinius akcijos duomenis. Šie duomenys yra tokie, kaip kiekvienos dienos akcijos kaina rinkos atsidarymo, užsidarymo metu. Gauti duomenys yra įrašomi į programėlės atmintį ir yra kviečiamas kitas modalinis langas \textit{ChartScreen}. Šis langas atlieka grafiko atvaizdavimo funkcionalumą su duomenimis gautais iš \textit{fetchHistoricalData} funkcijos. Šiame lange yra sudaroma grafiko konfigūracija, nustatomos ašys: x - datų masyvas, y - didžiausios ir mažiausios kainos masyvai. Tuomet yra kviečiama funkcija \textit{highCharts}, kuri iš išorinio paslaugų tiekėjo gražina istorinį akcijos grafiką. Jeigu grafikas gražintas sėkmingai šiame lange yra aprašomas grafiko aukštis ir plotis, kuris yra siunčiamas atgal į išplėsto akcijos turinio langą. Grįžus į minėtajį langą yra atvaizduojamas gautas grafikas ir iš pagrindinio arba vartotojo profilio lango gauti išplėsti akcijos duomenys. Taip pat buvo sukurtas grafiko datos imties keitimo funkcionalumas, kuris yra išdėstytas keturiais mygtukais virš grafiko. Kai yra paspaudžiamas vienas iš mygtukų, programėlės atmintyje pasikeičia laikinasis parametras nusakantis aktyvią grafiko datą, ir įvedant naująją vėl yra kreipiamasi į \textit{ChartScreen} langą ir yra atnaujinamas išplėstinis akcijos duomenų langas nauju grafiku. Kadangi yra kviečiami skirtingi duomenų tiekėjai grafikams ir akcijos duomenims atvaizduoti, būna atvejų kai yra negaunami vieni ar kiti duomenys.
 
 \subsection{Valiutos keitimo lango kūrimas}
 
@@ -199,7 +200,7 @@ Kiekviena akcija turi daugiau duomenų negu yra pavaizduota pagrindiniame ar var
 	\label{fig:currency}
 \end{figure}
 
-Valiutos keitimo funkcionalumo įgyvendinimas man atrodė būtina dalis, nes ne visi vartotojai naudoja vienodą valiutą akcijoms stebėti ir pirkti (lango pavyzdys paveikslėlyje \ref{fig:currency}). Todėl buvo būtina užduotis sukurti būdą vartotojams išsiversti akcijų kainas į sau priimtiną valiutą. Šiame lange yra keturi laukai. Pirmasis laukas atlieka sumos įvedimo funkcionalumą (pavaizduota išeities kode \ref{code:calculateRate}). Šioje funkcijoje gavęs įvesties sumą, kursą ir išvesties kursą paskaičiuoju išvesties sumą. Išvesties suma yra atvaizduojama \textit{pav. \ref{fig:currency}} trečiame laukelyje ir šis laukelis yra skirtas tik išvesties atvaizdavimui. Taip pat yra galimybė keisti valiutas paspaudus ant laukų kurie pažymėti valiutų vėliavomis. Valiutos iš kurių sąrašo galima rinktis yra įkoduotos aplikacijoje.
+Valiutos keitimo funkcionalumo įgyvendinimas buvo būtina dalis, nes ne visi vartotojai naudoja vienodą valiutą akcijoms stebėti ir pirkti (lango pavyzdys paveikslėlyje nr. \ref{fig:currency}). Todėl buvo būtina užduotis sukurti būdą vartotojams išsiversti akcijų kainas į sau priimtiną valiutą. Šiame lange yra keturi laukai. Pirmasis laukas atlieka sumos įvedimo funkcionalumą (pavaizduota išeities kode nr. \ref{code:calculateRate}). Šioje funkcijoje gavus įvesties sumą, kursą ir išvesties kursą yra apskaičiuojama išvesties suma. Išvesties suma yra atvaizduojama \textit{paveikslėlyje nr. \ref{fig:currency}} trečiame laukelyje ir šis laukelis yra skirtas tik išvesties atvaizdavimui. Taip pat yra galimybė keisti valiutas paspaudus ant laukų, kurie pažymėti valiutų vėliavomis. Valiutos, iš kurių sąrašo galima rinktis, yra įkoduotos aplikacijoje.
 
 \begin{lstlisting}[caption={Funkcijos calculateRate() pseudokodas.},label={code:calculateRate}]
 calculateRate(ivestis, ivestiesKursas, isvestiesKursas) {
@@ -208,7 +209,7 @@ calculateRate(ivestis, ivestiesKursas, isvestiesKursas) {
 }
 \end{lstlisting}
 
-Valiutų kursai yra apskaičiuojami naudojantis išoriniu \textit{„Bank of Canada“} teikiamu, kasdien atnaujinamu duomenų sąrašu. Valiutų kursams gauti sukūriau funkciją \textit{fetchRates} (pavaizduota išvestie kode \ref{code:fetchRates}). Šioje funkcijoje yra kviečiamas išorinis duomenų tiekėjas ir gauti duomenys yra grąžinami masyvo formatu ir išsaugomi programėlės atmintyje iki kol valiutų keitimo langas yra atidaromas iš naujo.
+Valiutų kursai yra apskaičiuojami naudojantis išoriniu \textit{„Bank of Canada“} teikiamu, kasdien atnaujinamu duomenų sąrašu. Valiutų kursai yra gaunami iškviečiant funkciją \textit{fetchRates} (pavaizduota išvestie kode nr. \ref{code:fetchRates}). Šioje funkcijoje yra kviečiamas išorinis duomenų tiekėjas ir gauti duomenys yra grąžinami masyvo formatu ir išsaugomi programėlės atmintyje iki kol valiutų keitimo langas yra atidaromas iš naujo.
 
 \begin{lstlisting}[caption={Funkcijos fetchRates() pseudokodas.},label={code:fetchRates}]
 fetchRates() {
@@ -230,9 +231,15 @@ fetchRates() {
 
 %% this part is optional
 \newpage
+
+
+%
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+%
 \begin{appendices}
-	
-\begin{figure}[h!]
+\begin{figure}[h]
 	\centering
 	\begin{subfigure}{0.5\textwidth}
 		\centering
@@ -247,7 +254,7 @@ fetchRates() {
 		\label{app:priedas2}
 	\end{subfigure}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[t!]
 	\centering
 	\begin{subfigure}{0.5\textwidth}
 		\centering
@@ -263,31 +270,31 @@ fetchRates() {
 	\end{subfigure}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[t!]
 	\begin{subfigure}{0.5\textwidth}
 		\centering
 		\tocless\section{Vartotojo akcijų portfelio langas}\label{app:priedas5}
-		\includegraphics[width=0.8\linewidth]{portfolio.png}
+		\includegraphics[width=0.7\linewidth]{portfolio.png}
 	\end{subfigure}%
 	\begin{subfigure}{0.5\textwidth}
 		\centering
 		\tocless\section{Akcijos paieškos laukas portfelio lange}
-		\includegraphics[width=0.8\linewidth]{stockSearch.png}
+		\includegraphics[width=0.7\linewidth]{stockSearch.png}
 		\label{app:priedas6}
 	\end{subfigure}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[t!]
 	\begin{subfigure}{0.5\textwidth}
 		\centering
 		\tocless\section{Pradinis programėlės akcijų langas}
-		\includegraphics[width=0.8\linewidth]{home.png}
+		\includegraphics[width=0.7\linewidth]{home.png}
 		\label{app:priedas7}
 	\end{subfigure}
 	\begin{subfigure}{0.5\textwidth}
 		\centering
 		\tocless\section{Akcijos duomenų detalaus atvaizdavimo langas}
-		\includegraphics[width=0.8\linewidth]{stockDetails.png}
+		\includegraphics[width=0.7\linewidth]{stockDetails.png}
 		\label{app:priedas8}
 	\end{subfigure}%
 \end{figure}

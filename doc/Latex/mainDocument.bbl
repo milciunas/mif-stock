@@ -13,19 +13,19 @@ Joana Katina.
 \newblock \newline \url{http://gs.elaba.lt/object/elaba:11697674/11697674.pdf}.
 
 \bibitem{CUR}
-Orientacinių euro ir užsienio valiutų santykių nustatymo ir skelbimo tvarka.
+\newblock Orientacinių euro ir užsienio valiutų santykių nustatymo ir skelbimo tvarka.
 \newblock \newline \url{https://www.ecb.europa.eu/stats/pdf/exchange/Frameworkfortheeuroforeignexchangereferencerates.lt.pdf}.
 
 \bibitem{YHOO}
-Akcijų kainos ir jų pokyčiai.
+\newblock Akcijų kainos ir jų pokyčiai.
 \newblock \newline \url{https://finance.yahoo.com/}.
 
 \bibitem{QUANDL}
-Istoriniai akcijų kainų pokyčiai.
+\newblock Istoriniai akcijų kainų pokyčiai. 
 \newblock \newline \url{https://www.quandl.com/product/WIKIP/WIKI/PRICES-Quandl-End-Of-Day-Stocks-Info}.
 
 \bibitem{CAD}
-Kasdieniai valiutų kursų pokyčiai.
+\newblock Kasdieniai valiutų kursų pokyčiai. 
 \newblock \newline \url{http://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/}.
 
 \end{thebibliography}
